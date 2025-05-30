@@ -38,12 +38,6 @@ export interface ResourceManagerProps<T extends ResourceData> {
   update: (id: string | number, values: any) => void;
   delete: (id: string | number) => void;
   defaultValues: Partial<T>;
-  FormComponent: React.ComponentType<{
-    initialValues: Partial<T>;
-    onSubmit: (values: any) => void;
-    onCancel: () => void;
-    mode: ModalMode;
-  }>;
 }
 
 //Form modal specific types
@@ -55,12 +49,7 @@ export interface ResourceFormModalProps<T extends ResourceData> {
   onCancel: () => void;
   mode: ModalMode;
   resourceName: string;
-  FormComponent: React.ComponentType<{
-    initialValues: Partial<T>;
-    onSubmit: (values: any) => void;
-    onCancel: () => void;
-    mode: ModalMode;
-  }>;
+  fields: FieldDef<T>[];
 }
 
 // Table specific types

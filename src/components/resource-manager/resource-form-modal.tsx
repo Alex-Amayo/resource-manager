@@ -1,7 +1,8 @@
-import type { ResourceData, ModalMode } from "./types";
+import type { ResourceData } from "./types";
 import { Dialog, DialogTitle } from "@radix-ui/react-dialog";
 import { DialogContent, DialogHeader } from "../ui/dialog";
 import type { ResourceFormModalProps } from "./types";
+import { ResourceFormGenerator } from "./resource-form-generator/resource-form-generator";
 
 
 /**
@@ -16,8 +17,8 @@ export function ResourceFormModal<T extends ResourceData>({
   onSubmit,
   onCancel,
   mode,
-  FormComponent,
-  resourceName
+  resourceName,
+  fields
 }: ResourceFormModalProps<T>) {
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
@@ -27,7 +28,8 @@ export function ResourceFormModal<T extends ResourceData>({
             {mode === "add" ? "Create New" : "Edit"} {resourceName}
           </DialogTitle>
         </DialogHeader>
-        <FormComponent 
+        <ResourceFormGenerator
+          fields={fields}
           initialValues={initialValues}
           onSubmit={onSubmit}
           onCancel={onCancel}

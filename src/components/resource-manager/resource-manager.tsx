@@ -25,7 +25,6 @@ export function ResourceManager<T extends ResourceData>({
   delete: deleteResource,
   resourceName = "Resource",
   defaultValues,
-  FormComponent,
   title,
 }: ResourceManagerProps<T>) {
   // Modal/form state
@@ -88,8 +87,8 @@ export function ResourceManager<T extends ResourceData>({
       onSubmit={handleSubmitForm}
       onCancel={handleCloseModal}
       mode={mode}
-      FormComponent={FormComponent}
       resourceName={resourceName}
+      fields={fields}
     />
   );
 

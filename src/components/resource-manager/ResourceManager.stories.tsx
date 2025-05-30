@@ -30,34 +30,6 @@ const data: Contact[] = [
     { id: 2, name: "Bob", email: "bob@example.com" },
 ];
 
-function DummyForm({ initialValues, onSubmit, onCancel }: any) {
-    const [formData, setFormData] = React.useState(initialValues);
-
-    return (
-        <form
-            onSubmit={(e) => {
-                e.preventDefault();
-                onSubmit(formData);
-            }}
-        >
-            <input
-                value={formData.name || ""}
-                placeholder="Name"
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            />
-            <input
-                value={formData.email || ""}
-                placeholder="Email"
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            />
-            <button type="submit">Save</button>
-            <button type="button" onClick={onCancel}>
-                Cancel
-            </button>
-        </form>
-    );
-}
-
 export default {
     title: "Components/ResourceManager",
     component: ResourceManager,
@@ -76,5 +48,4 @@ Basic.args = {
     create: (values: any) => console.log("create", values),
     update: (id: number, values: any) => console.log("update", id, values),
     delete: (id: number) => console.log("delete", id),
-    FormComponent: DummyForm,
 };
