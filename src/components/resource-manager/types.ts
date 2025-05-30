@@ -8,52 +8,31 @@ export interface ResourceData {
 
 export type InputType = 'text' | 'number' | 'tags' | 'select' | 'textarea';
 
-// Field type definitions
-export type FieldTypes = {
-  string: string;
-  number: number;
-  boolean: boolean;
-  // More field types can be added here later
-};
-
-// Typed field definition
-export interface FieldDef<T extends ResourceData> {
+// Only the minimal types for resource manager and table
+export interface FieldDef<T extends ResourceData = ResourceData> {
   key: keyof T;
   label: string;
   inputType: InputType;
-  fieldType: keyof FieldTypes; // Type of the field (string, number, etc.)
-  renderCell: (value: any) => ReactNode;
-  options?: { label: string; value: string | number }[];  // For select inputs
+  fieldType: string;
+  renderCell: (value: any, row?: T) => ReactNode;
+  options?: { label: string; value: string | number }[];
   required?: boolean;
 }
 
 export type ModalMode = "add" | "edit";
 
-export interface ResourceManagerProps<T extends ResourceData> {
+export interface ResourceManagerProps<T extends ResourceData = ResourceData> {
   title: string;
   resourceName: string;
   data: T[];
   fields: FieldDef<T>[];
-  create: (values: any) => void;
-  update: (id: string | number, values: any) => void;
+  create: (values: Partial<T>) => void;
+  update: (id: string | number, values: Partial<T>) => void;
   delete: (id: string | number) => void;
   defaultValues: Partial<T>;
 }
 
-//Form modal specific types
-export interface ResourceFormModalProps<T extends ResourceData> {
-  isOpen: boolean;
-  onOpenChange: (open: boolean) => void;
-  initialValues: Partial<T>;
-  onSubmit: (values: Partial<T>) => void;
-  onCancel: () => void;
-  mode: ModalMode;
-  resourceName: string;
-  fields: FieldDef<T>[];
-}
-
-// Table specific types
-export interface ResourceTableProps<T extends ResourceData> {
+export interface ResourceTableProps<T extends ResourceData = ResourceData> {
   data: T[];
   fields: FieldDef<T>[];
   onEdit: (index: number) => void;

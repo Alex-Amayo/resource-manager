@@ -1,8 +1,8 @@
-import type { ResourceData } from "./types";
+import type { ResourceData } from "../types";
 import { Dialog, DialogTitle } from "@radix-ui/react-dialog";
-import { DialogContent, DialogHeader } from "../ui/dialog";
-import type { ResourceFormModalProps } from "./types";
-import { ResourceFormGenerator } from "./resource-form-generator/resource-form-generator";
+import { DialogContent, DialogHeader } from "../../ui/dialog";
+import type { ResourceFormModalProps } from "./form-types";
+import { ResourceFormGenerator } from "./resource-form-generator";
 
 
 /**

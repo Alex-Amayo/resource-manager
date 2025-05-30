@@ -1,20 +1,14 @@
 import { useForm, Controller } from 'react-hook-form';
+import type { FieldValues } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Button } from '../../ui/button';
 import { Input } from '../../ui/input';
 import { Select } from '../../ui/select';
 import { Textarea } from '../../ui/textarea';
-import type { ResourceData, FieldDef, ModalMode } from '../types';
+import type { ResourceFormGeneratorProps } from './form-types';
+import type { ResourceData } from '../types';
 
-// Props for the form generator
-export interface ResourceFormGeneratorProps<T extends ResourceData> {
-  fields: FieldDef<T>[];
-  initialValues: Partial<T>;
-  onSubmit: (values: Partial<T>) => void;
-  onCancel: () => void;
-  mode: ModalMode;
-}
 
 /**
  * Dynamically generates a form based on field definitions using React Hook Form
@@ -54,19 +48,19 @@ export function ResourceFormGenerator<T extends ResourceData>({
   
   const schema = generateSchema();
   
-  // Set up React Hook Form with zod validation
+  // Use FieldValues for react-hook-form generics for compatibility
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<Partial<T>>({
+  } = useForm<FieldValues>({
     resolver: zodResolver(schema),
-    defaultValues: initialValues,
+    defaultValues: initialValues as any,
   });
 
   // Form submission handler
-  const onFormSubmit = (data: Partial<T>) => {
-    onSubmit(data);
+  const onFormSubmit = (data: FieldValues) => {
+    onSubmit(data as Partial<T>);
   };
 
   return (
@@ -83,9 +77,10 @@ export function ResourceFormGenerator<T extends ResourceData>({
             </label>
             
             <Controller
-              name={fieldKey as any}
+              name={fieldKey}
               control={control}
               render={({ field: formField }) => {
+                const value = formField.value ?? '';
                 // Render different input types
                 switch (field.inputType) {
                   case 'text':
@@ -95,6 +90,7 @@ export function ResourceFormGenerator<T extends ResourceData>({
                         type="text"
                         className="w-full"
                         {...formField}
+                        value={value}
                       />
                     );
                   case 'textarea':
@@ -104,17 +100,17 @@ export function ResourceFormGenerator<T extends ResourceData>({
                         className="w-full p-2 border border-gray-300 rounded-md"
                         rows={4}
                         {...formField}
+                        value={value}
                       />
                     );
                   case 'select':
                     return (
                       <Select
-                        id={fieldKey}
-                        className="w-full p-2 border border-gray-300 rounded-md"
                         {...formField}
+                        value={value}
                       >
                         <option value="">Select {field.label}</option>
-                        {field.options?.map((option) => (
+                        {(field.options ?? []).map((option: any) => (
                           <option key={option.value} value={option.value}>
                             {option.label}
                           </option>
@@ -127,14 +123,15 @@ export function ResourceFormGenerator<T extends ResourceData>({
                       type="text" 
                       className="w-full p-2 border border-gray-300 rounded-md" 
                       {...formField}
+                      value={value}
                     />;
                 }
               }}
             />
             
-            {errors[fieldKey as keyof Partial<T>] && (
+            {errors[fieldKey] && (
               <p className="text-red-500 text-sm">
-                {errors[fieldKey as keyof Partial<T>]?.message?.toString()}
+                {errors[fieldKey]?.message?.toString()}
               </p>
             )}
           </div>

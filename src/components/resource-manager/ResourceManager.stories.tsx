@@ -8,7 +8,20 @@ interface Contact extends ResourceData {
     email: string;
 }
 
-const fields: FieldDef<Contact>[] = [
+// Example of extending FieldTypes for demonstration
+interface ContactFieldTypes extends FieldTypes {
+  // Add custom types here if needed, e.g.:
+  // date: Date;
+}
+
+const fields: FieldDef<Contact, ContactFieldTypes>[] = [
+    {
+        key: "id",
+        label: "ID",
+        inputType: "text",
+        renderCell: (value) => value,
+        fieldType: "string",
+    },
     {
         key: "name",
         label: "Name",
@@ -36,7 +49,7 @@ export default {
 };
 
 type Story = StoryFn<typeof ResourceManager>;
-const Template: Story = (args) => <ResourceManager {...args} />;
+const Template: Story = (args) => <ResourceManager<Contact, ContactFieldTypes> {...(args as any)} />;
 
 export const Basic: Story = Template.bind({});
 Basic.args = {
@@ -45,7 +58,7 @@ Basic.args = {
     data,
     fields,
     defaultValues: { name: "", email: "" },
-    create: (values: any) => console.log("create", values),
-    update: (id: number, values: any) => console.log("update", id, values),
-    delete: (id: number) => console.log("delete", id),
+    create: (values) => console.log("create", values),
+    update: (id, values) => console.log("update", id, values),
+    delete: (id) => console.log("delete", id),
 };
