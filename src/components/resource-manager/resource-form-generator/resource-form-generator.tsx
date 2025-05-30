@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Button } from '../../ui/button';
 import { Input } from '../../ui/input';
-import { Select } from '../../ui/select';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectItem, SelectLabel } from '../../ui/select';
 import { Textarea } from '../../ui/textarea';
 import type { ResourceFormGeneratorProps } from './form-types';
 import type { ResourceData } from '../types';
@@ -105,16 +105,22 @@ export function ResourceFormGenerator({
                     );
                   case 'select':
                     return (
-                      <Select
-                        {...formField}
-                        value={value}
-                      >
-                        <option value="">Select {field.label}</option>
-                        {(field.options ?? []).map((option: any) => (
-                          <option key={option.value} value={option.value}>
-                            {option.label}
-                          </option>
-                        ))}
+                      <Select value={value} onValueChange={formField.onChange}>
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder={`Select ${field.label}`} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            {field.options && field.options.length > 0 && (
+                              <SelectLabel>{field.label}</SelectLabel>
+                            )}
+                            {(field.options ?? []).map((option: any) => (
+                              <SelectItem key={option.value} value={option.value}>
+                                {option.label}
+                              </SelectItem>
+                            ))}
+                          </SelectGroup>
+                        </SelectContent>
                       </Select>
                     );
                   default:
