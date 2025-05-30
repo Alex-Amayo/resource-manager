@@ -46,7 +46,6 @@ Basic.args = {
     resourceName: "Contact",
     data: data,
     fields: fields,
-    defaultValues: { name: "", email: "" },
     create: (values) => console.log("create", values),
     update: (id, values) => console.log("update", id, values),
     delete: (id) => console.log("delete", id),

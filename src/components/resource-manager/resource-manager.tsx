@@ -24,7 +24,6 @@ export function ResourceManager({
   update,
   delete: deleteResource,
   resourceName = "Resource",
-  defaultValues,
   title,
 }: ResourceManagerProps) {
   // Modal/form state
@@ -36,7 +35,7 @@ export function ResourceManager({
   // Handlers for modal actions
   const handleOpenCreate = () => {
     setEditIdx(null);
-    setFormValues(defaultValues);
+    setFormValues({});
     setMode("add");
     setModalOpen(true);
   };
@@ -51,7 +50,7 @@ export function ResourceManager({
   const handleCloseModal = () => {
     setModalOpen(false);
     setEditIdx(null);
-    setFormValues(defaultValues);
+    setFormValues({});
   };
 
   const handleSubmitForm = (values: Partial<ResourceData>) => {

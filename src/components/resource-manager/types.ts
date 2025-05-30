@@ -29,7 +29,7 @@ export interface ResourceManagerProps {
   create: (values: Partial<ResourceData>) => void;
   update: (id: string | number, values: Partial<ResourceData>) => void;
   delete: (id: string | number) => void;
-  defaultValues: Partial<ResourceData>;
+  defaultValues?: Partial<ResourceData>;
 }
 
 export interface ResourceTableProps {
