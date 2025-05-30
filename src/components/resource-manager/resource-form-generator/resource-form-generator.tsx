@@ -14,13 +14,13 @@ import type { ResourceData } from '../types';
  * Dynamically generates a form based on field definitions using React Hook Form
  * Currently supports string type fields, but can be extended for other types
  */
-export function ResourceFormGenerator<T extends ResourceData>({
+export function ResourceFormGenerator({
   fields, 
   initialValues, 
   onSubmit, 
   onCancel,
   mode 
-}: ResourceFormGeneratorProps<T>) {
+}: ResourceFormGeneratorProps) {
   // Dynamically build a zod schema based on field definitions
   const generateSchema = () => {
     const schemaMap: Record<string, any> = {};
@@ -60,7 +60,7 @@ export function ResourceFormGenerator<T extends ResourceData>({
 
   // Form submission handler
   const onFormSubmit = (data: FieldValues) => {
-    onSubmit(data as Partial<T>);
+    onSubmit(data as Partial<ResourceData>);
   };
 
   return (

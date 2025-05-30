@@ -1,36 +1,17 @@
 // ResourceFormGenerator.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ResourceFormGenerator } from './resource-form-generator.tsx';
-import type { ResourceData, FieldDef } from '../types';
-
-// Example interface for our resource
-interface ExampleResource extends ResourceData {
-    name: string;
-    description: string;
-    category: string;
-    notes: string;
-}
-
-const meta: Meta<typeof ResourceFormGenerator> = {
-    title: 'Forms/ResourceFormGenerator',
-    component: ResourceFormGenerator,
-    parameters: {
-        layout: 'centered',
-    },
-    tags: ['autodocs'],
-};
-
-export default meta;
-type Story = StoryObj<typeof ResourceFormGenerator>;
+import type { FieldDef } from '../types';
 
 // Sample fields configuration
-const sampleFields: FieldDef<ExampleResource>[] = [
+const sampleFields: FieldDef[] = [
     {
         key: 'name',
         label: 'Name',
         fieldType: 'string',
         inputType: 'text',
         required: true,
+        renderCell: (value) => value,
     },
     {
         key: 'description',
@@ -38,6 +19,7 @@ const sampleFields: FieldDef<ExampleResource>[] = [
         fieldType: 'string',
         inputType: 'textarea',
         required: true,
+        renderCell: (value) => value,
     },
     {
         key: 'category',
@@ -50,6 +32,7 @@ const sampleFields: FieldDef<ExampleResource>[] = [
             { value: 'business', label: 'Business' },
             { value: 'education', label: 'Education' },
         ],
+        renderCell: (value) => value,
     },
     {
         key: 'notes',
@@ -57,8 +40,21 @@ const sampleFields: FieldDef<ExampleResource>[] = [
         fieldType: 'string',
         inputType: 'textarea',
         required: false,
+        renderCell: (value) => value,
     },
 ];
+
+const meta: Meta<typeof ResourceFormGenerator> = {
+    title: 'Forms/ResourceFormGenerator',
+    component: ResourceFormGenerator,
+    parameters: {
+        layout: 'centered',
+    },
+    tags: ['autodocs'],
+};
+
+export default meta;
+type Story = StoryObj<typeof ResourceFormGenerator>;
 
 // Base story
 export const Default: Story = {

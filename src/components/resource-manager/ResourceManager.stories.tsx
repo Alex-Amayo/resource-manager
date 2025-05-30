@@ -1,20 +1,9 @@
 import { ResourceManager } from "./resource-manager";
-import type { ResourceData, FieldDef } from "./types";
+import type { FieldDef } from "./types";
 import type { StoryFn } from "@storybook/react-vite";
 
-interface Contact extends ResourceData {
-    id: number;
-    name: string;
-    email: string;
-}
-
-// Example of extending FieldTypes for demonstration
-interface ContactFieldTypes extends FieldTypes {
-  // Add custom types here if needed, e.g.:
-  // date: Date;
-}
-
-const fields: FieldDef<Contact, ContactFieldTypes>[] = [
+// No need to extend FieldTypes for this simple example, use FieldDef<Contact>[]
+const fields: FieldDef[] = [
     {
         key: "id",
         label: "ID",
@@ -38,7 +27,7 @@ const fields: FieldDef<Contact, ContactFieldTypes>[] = [
     },
 ];
 
-const data: Contact[] = [
+const data = [
     { id: 1, name: "Alice", email: "alice@example.com" },
     { id: 2, name: "Bob", email: "bob@example.com" },
 ];
@@ -49,14 +38,14 @@ export default {
 };
 
 type Story = StoryFn<typeof ResourceManager>;
-const Template: Story = (args) => <ResourceManager<Contact, ContactFieldTypes> {...(args as any)} />;
+const Template: Story = (args) => <ResourceManager {...args as any} />;
 
 export const Basic: Story = Template.bind({});
 Basic.args = {
     title: "Contact Manager",
     resourceName: "Contact",
-    data,
-    fields,
+    data: data,
+    fields: fields,
     defaultValues: { name: "", email: "" },
     create: (values) => console.log("create", values),
     update: (id, values) => console.log("update", id, values),

@@ -17,7 +17,7 @@ import { ResourceFormModal } from "./resource-form-generator/resource-form-modal
  * @template T Resource type
  * @param props ResourceManagerProps<T>
  */
-export function ResourceManager<T extends ResourceData>({
+export function ResourceManager({
   data,
   fields,
   create,
@@ -26,12 +26,12 @@ export function ResourceManager<T extends ResourceData>({
   resourceName = "Resource",
   defaultValues,
   title,
-}: ResourceManagerProps<T>) {
+}: ResourceManagerProps) {
   // Modal/form state
   const [modalOpen, setModalOpen] = React.useState(false);
   const [editIdx, setEditIdx] = React.useState<number | null>(null);
   const [mode, setMode] = React.useState<ModalMode>("add");
-  const [formValues, setFormValues] = React.useState<Partial<T>>({});
+  const [formValues, setFormValues] = React.useState<Partial<ResourceData>>({});
 
   // Handlers for modal actions
   const handleOpenCreate = () => {
@@ -54,7 +54,7 @@ export function ResourceManager<T extends ResourceData>({
     setFormValues(defaultValues);
   };
 
-  const handleSubmitForm = (values: Partial<T>) => {
+  const handleSubmitForm = (values: Partial<ResourceData>) => {
     if (mode === "add") {
       create(values);
     } else if (mode === "edit" && editIdx !== null) {
@@ -78,7 +78,6 @@ export function ResourceManager<T extends ResourceData>({
     <ResourceActionsMenu onEdit={onEdit} onDelete={onDelete} />
   );
 
-  // Form modal component
   const formComponent = modalOpen && (
     <ResourceFormModal
       isOpen={modalOpen}
@@ -102,7 +101,7 @@ export function ResourceManager<T extends ResourceData>({
           Add {resourceName}
         </Button>
       </div>
-      <ResourceTable<T>
+      <ResourceTable
         data={data}
         fields={fields}
         onEdit={handleOpenEdit}

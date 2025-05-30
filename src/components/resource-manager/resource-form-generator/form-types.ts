@@ -3,21 +3,21 @@ import type { ResourceData } from "../types";
 
 export type ModalMode = "add" | "edit";
 
-export interface ResourceFormGeneratorProps<T extends ResourceData = ResourceData> {
-  fields: FieldDef<T>[];
-  initialValues: Partial<T>;
-  onSubmit: (values: Partial<T>) => void;
+export interface ResourceFormGeneratorProps {
+  fields: FieldDef[];
+  initialValues: Partial<ResourceData>;
+  onSubmit: (values: Partial<ResourceData>) => void;
   onCancel: () => void;
   mode: ModalMode;
 }
 
-export interface ResourceFormModalProps<T extends ResourceData = ResourceData> {
+export interface ResourceFormModalProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
-  initialValues: Partial<T>;
-  onSubmit: (values: Partial<T>) => void;
+  initialValues: Partial<ResourceData>;
+  onSubmit: (values: Partial<ResourceData>) => void;
   onCancel: () => void;
   mode: ModalMode;
   resourceName: string;
-  fields: FieldDef<T>[];
+  fields: FieldDef[];
 }

@@ -1,15 +1,14 @@
-
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "../ui/table.tsx";
-import type { ResourceData, ResourceTableProps } from "./types.ts";
+import type { ResourceTableProps } from "./types.ts";
 
-export function ResourceTable<T extends ResourceData>({
+export function ResourceTable({
   data,
   fields,
   onEdit,
   onDelete,
   renderActionsMenu,
   resourceName
-}: ResourceTableProps<T>) {
+}: ResourceTableProps) {
   if (!data || data.length === 0) {
     return (
       <div className="text-center py-8 text-gray-500">
@@ -24,7 +23,7 @@ export function ResourceTable<T extends ResourceData>({
         <TableHeader>
           <TableRow>
             {fields.map((field) => (
-              <TableHead key={field.key as string}>{field.label}</TableHead>
+              <TableHead key={field.key}>{field.label}</TableHead>
             ))}
             <TableHead>Actions</TableHead>
           </TableRow>
@@ -35,7 +34,7 @@ export function ResourceTable<T extends ResourceData>({
               {fields.map((field) => {
                 const value = row[field.key];
                 return (
-                  <TableCell key={`${rowIdx}-${field.key as string}`}>
+                  <TableCell key={`${rowIdx}-${field.key}`}>
                     {field.renderCell(value)}
                   </TableCell>
                 );
