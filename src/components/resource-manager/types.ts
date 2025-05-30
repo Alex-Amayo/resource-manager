@@ -36,15 +36,21 @@ export interface ResourceManagerProps<T extends ResourceData> {
   }>;
 }
 
-// Form specific types
-export interface ResourceFormProps<T extends ResourceData> {
-  fields: FieldDef<T>[];
-  onSubmit: (data: Partial<T>) => void;
-  defaultValues: Partial<T>;
-  resourceName: string;
-  isEditing: boolean;
-  currentValues?: Partial<T>;
+//Form modal specific types
+export interface ResourceFormModalProps<T extends ResourceData> {
+  isOpen: boolean;
+  onOpenChange: (open: boolean) => void;
+  initialValues: Partial<T>;
+  onSubmit: (values: Partial<T>) => void;
   onCancel: () => void;
+  mode: ModalMode;
+  resourceName: string;
+  FormComponent: React.ComponentType<{
+    initialValues: Partial<T>;
+    onSubmit: (values: any) => void;
+    onCancel: () => void;
+    mode: ModalMode;
+  }>;
 }
 
 // Table specific types

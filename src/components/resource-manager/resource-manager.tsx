@@ -5,6 +5,7 @@ import type { ResourceData, ResourceManagerProps, ModalMode } from "./types.ts";
 import { ResourceTable } from "./resource-table.tsx";
 import { ResourceActionsMenu } from "./resource-actions-menu.tsx";
 import { Button } from "../ui/button.tsx";
+import { ResourceFormModal } from "./resource-form-modal.tsx";
 
 /**
  * Generic ResourceManager component for displaying and managing resources.
@@ -74,22 +75,22 @@ export function ResourceManager<T extends ResourceData>({
   };
 
   // Internal renderActionsMenu function
-  const renderActionsMenu = (rowIdx: number, onEdit: () => void, onDelete: () => void) => (
+  const renderActionsMenu = (_rowIdx: number, onEdit: () => void, onDelete: () => void) => (
     <ResourceActionsMenu onEdit={onEdit} onDelete={onDelete} />
   );
 
   // Form modal component
   const formComponent = modalOpen && (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
-      <div className="bg-white rounded shadow-lg p-6 min-w-[350px] max-w-[95vw]">
-        <FormComponent 
-          initialValues={formValues}
-          onSubmit={handleSubmitForm}
-          onCancel={handleCloseModal}
-          mode={mode}
-        />
-      </div>
-    </div>
+    <ResourceFormModal
+      isOpen={modalOpen}
+      onOpenChange={setModalOpen}
+      initialValues={formValues}
+      onSubmit={handleSubmitForm}
+      onCancel={handleCloseModal}
+      mode={mode}
+      FormComponent={FormComponent}
+      resourceName={resourceName}
+    />
   );
 
   return (
