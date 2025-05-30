@@ -8,7 +8,7 @@ import { Textarea } from '../../ui/textarea';
 import type { ResourceData, FieldDef, ModalMode } from '../types';
 
 // Props for the form generator
-export interface FormGeneratorProps<T extends ResourceData> {
+export interface ResourceFormGeneratorProps<T extends ResourceData> {
   fields: FieldDef<T>[];
   initialValues: Partial<T>;
   onSubmit: (values: Partial<T>) => void;
@@ -20,13 +20,13 @@ export interface FormGeneratorProps<T extends ResourceData> {
  * Dynamically generates a form based on field definitions using React Hook Form
  * Currently supports string type fields, but can be extended for other types
  */
-export function FormGenerator<T extends ResourceData>({ 
+export function ResourceFormGenerator<T extends ResourceData>({
   fields, 
   initialValues, 
   onSubmit, 
   onCancel,
   mode 
-}: FormGeneratorProps<T>) {
+}: ResourceFormGeneratorProps<T>) {
   // Dynamically build a zod schema based on field definitions
   const generateSchema = () => {
     const schemaMap: Record<string, any> = {};
