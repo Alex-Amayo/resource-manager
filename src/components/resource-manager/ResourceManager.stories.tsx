@@ -14,12 +14,14 @@ const fields: FieldDef<Contact>[] = [
         label: "Name",
         inputType: "text",
         renderCell: (value) => value,
+        fieldType: "string",
     },
     {
         key: "email",
         label: "Email",
         inputType: "text",
         renderCell: (value) => value,
+        fieldType: "string",
     },
 ];
 
