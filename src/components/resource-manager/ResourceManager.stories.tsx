@@ -1,4 +1,3 @@
-import React from "react";
 import { ResourceManager } from "./resource-manager";
 import type { ResourceData, FieldDef } from "./types";
 import type { StoryFn } from "@storybook/react-vite";

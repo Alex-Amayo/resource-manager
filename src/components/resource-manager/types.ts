@@ -8,10 +8,20 @@ export interface ResourceData {
 
 export type InputType = 'text' | 'number' | 'tags' | 'select' | 'textarea';
 
+// Field type definitions
+export type FieldTypes = {
+  string: string;
+  number: number;
+  boolean: boolean;
+  // More field types can be added here later
+};
+
+// Typed field definition
 export interface FieldDef<T extends ResourceData> {
   key: keyof T;
   label: string;
   inputType: InputType;
+  fieldType: keyof FieldTypes; // Type of the field (string, number, etc.)
   renderCell: (value: any) => ReactNode;
   options?: { label: string; value: string | number }[];  // For select inputs
   required?: boolean;
