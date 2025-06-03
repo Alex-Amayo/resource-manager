@@ -5,6 +5,7 @@ import type { ResourceData, ResourceManagerProps, ModalMode } from "./types.ts";
 import { ResourceTable } from "./resource-table.tsx";
 import { ResourceActionsMenu } from "./resource-actions-menu.tsx";
 import { Button } from "../ui/button.tsx";
+import { PlusCircle } from "lucide-react";
 import { ResourceFormModal } from "./resource-form-generator/resource-form-modal.tsx";
 
 /**
@@ -91,14 +92,10 @@ export function ResourceManager({
   );
 
   return (
-    <div className="container mx-auto">
-      <div className="flex justify-between items-center mb-4">
+    <div className="container flex flex-col gap-4">
+      {/* Header with title */}
+      <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">{title}</h1>
-        <Button
-          onClick={handleOpenCreate}
-        >
-          Add {resourceName}
-        </Button>
       </div>
       <ResourceTable
         data={data}
@@ -108,6 +105,17 @@ export function ResourceManager({
         renderActionsMenu={renderActionsMenu}
         resourceName={resourceName}
       />
+      {/* Create button */}
+      <div className="flex justify-end">
+        <Button
+        variant="default"
+        className="bg-blue-500 text-primary hover:bg-blue-600"
+        onClick={handleOpenCreate}
+        >
+          Add {resourceName}
+          <PlusCircle />
+        </Button>
+      </div>
       {formComponent}
     </div>
   );
