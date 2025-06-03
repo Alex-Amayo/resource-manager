@@ -1,18 +1,18 @@
-import { Textarea } from '../../ui/textarea';
+import { Input } from '../../../ui/input';
 import type { ControllerRenderProps } from 'react-hook-form';
 
-interface InputTextareaProps {
+interface InputTextProps {
   id: string;
   field: ControllerRenderProps<any, string>;
 }
 
-export function InputTextarea({ id, field }: InputTextareaProps) {
+export function InputText({ id, field }: InputTextProps) {
   const value = field.value ?? '';
   return (
-    <Textarea
+    <Input
       id={id}
-      className="w-full p-2 border border-gray-300 rounded-md"
-      rows={4}
+      type="text"
+      className="w-full"
       {...field}
       value={value}
     />

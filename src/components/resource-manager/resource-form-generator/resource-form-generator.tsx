@@ -3,9 +3,9 @@ import type { FieldValues } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Button } from '../../ui/button';
-import { InputText } from './input-text';
-import { InputTextarea } from './input-textarea';
-import { InputSelect } from './input-select';
+import { InputText } from './inputs/input-text';
+import { InputTextarea } from './inputs/input-textarea';
+import { InputSelect } from './inputs/input-select';
 import type { ResourceFormGeneratorProps } from './form-types';
 import type { ResourceData } from '../types';
 
