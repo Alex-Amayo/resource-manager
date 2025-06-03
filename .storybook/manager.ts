@@ -8,11 +8,11 @@ const theme = create({
   fontBase: '"Open Sans", sans-serif',
   fontCode: 'monospace',
 
-  colorPrimary: '#313fd1',
-  colorSecondary: '#313fd1',
+  colorPrimary: '#f37c85',
+  colorSecondary: '#3d4f8d',
   
   // Brand information
-  brandImage: 'https://eqdlycoo48.ufs.sh/f/e0ig7JYH0pJBYunVegKEHV04O3qdAmTnyMGQrj9gfUi8ueP6',
+  brandImage: 'https://eqdlycoo48.ufs.sh/f/e0ig7JYH0pJBFi2eMrhLtA3BXgw6RyGusFhQziaPHIcdjWm5',
   brandUrl: 'https://yourwebsite.com',
   brandTarget: '_self',
 });

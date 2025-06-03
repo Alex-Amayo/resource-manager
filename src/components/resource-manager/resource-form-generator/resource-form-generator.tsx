@@ -3,16 +3,15 @@ import type { FieldValues } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Button } from '../../ui/button';
-import { Input } from '../../ui/input';
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectItem, SelectLabel } from '../../ui/select';
-import { Textarea } from '../../ui/textarea';
+import { InputText } from './input-text';
+import { InputTextarea } from './input-textarea';
+import { InputSelect } from './input-select';
 import type { ResourceFormGeneratorProps } from './form-types';
 import type { ResourceData } from '../types';
 
 
 /**
  * Dynamically generates a form based on field definitions using React Hook Form
- * Currently supports string type fields, but can be extended for other types
  */
 export function ResourceFormGenerator({
   fields, 
@@ -80,57 +79,22 @@ export function ResourceFormGenerator({
               name={fieldKey}
               control={control}
               render={({ field: formField }) => {
-                const value = formField.value ?? '';
                 // Render different input types
                 switch (field.inputType) {
                   case 'text':
                     return (
-                      <Input
-                        id={fieldKey}
-                        type="text"
-                        className="w-full"
-                        {...formField}
-                        value={value}
-                      />
+                      <InputText id={fieldKey} field={formField} />
                     );
                   case 'textarea':
                     return (
-                      <Textarea
-                        id={fieldKey}
-                        className="w-full p-2 border border-gray-300 rounded-md"
-                        rows={4}
-                        {...formField}
-                        value={value}
-                      />
+                      <InputTextarea id={fieldKey} field={formField} />
                     );
                   case 'select':
                     return (
-                      <Select value={value} onValueChange={formField.onChange}>
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder={`Select ${field.label}`} />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            {field.options && field.options.length > 0 && (
-                              <SelectLabel>{field.label}</SelectLabel>
-                            )}
-                            {(field.options ?? []).map((option: any) => (
-                              <SelectItem key={option.value} value={option.value}>
-                                {option.label}
-                              </SelectItem>
-                            ))}
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
+                      <InputSelect id={fieldKey} label={field.label} field={formField} options={field.options} />
                     );
                   default:
-                    return <Input 
-                      id={fieldKey}
-                      type="text" 
-                      className="w-full p-2 border border-gray-300 rounded-md" 
-                      {...formField}
-                      value={value}
-                    />;
+                    return <InputText id={fieldKey} field={formField} />;
                 }
               }}
             />

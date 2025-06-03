@@ -15,7 +15,7 @@ export interface FieldDef {
   inputType: InputType;
   fieldType: string;
   renderCell: (value: any, row?: any) => ReactNode;
-  options?: { label: string; value: string | number }[];
+  options?: { label: string; value: string }[];
   required?: boolean;
 }
 
@@ -27,8 +27,8 @@ export interface ResourceManagerProps {
   data: ResourceData[];
   fields: FieldDef[];
   create: (values: Partial<ResourceData>) => void;
-  update: (id: string | number, values: Partial<ResourceData>) => void;
-  delete: (id: string | number) => void;
+  update: (id: string , values: Partial<ResourceData>) => void;
+  delete: (id: string ) => void;
   defaultValues?: Partial<ResourceData>;
 }
 
