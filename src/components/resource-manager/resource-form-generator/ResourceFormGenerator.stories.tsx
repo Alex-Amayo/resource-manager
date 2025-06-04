@@ -42,6 +42,14 @@ const sampleFields: FieldDef[] = [
         required: false,
         renderCell: (value) => value,
     },
+    {
+        key: 'attachment',
+        label: 'Attachment',
+        fieldType: 'file',
+        inputType: 'file',
+        required: false,
+        renderCell: (value) => value instanceof File ? value.name : (value ? String(value) : ''),
+    },
 ];
 
 const meta: Meta<typeof ResourceFormGenerator> = {

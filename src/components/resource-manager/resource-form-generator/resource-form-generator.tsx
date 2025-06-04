@@ -6,6 +6,7 @@ import { Button } from '../../ui/button';
 import { InputText } from './inputs/input-text';
 import { InputTextarea } from './inputs/input-textarea';
 import { InputSelect } from './inputs/input-select';
+import { InputFile } from './inputs/input-file';
 import type { ResourceFormGeneratorProps } from './form-types';
 import type { ResourceData } from '../types';
 
@@ -32,6 +33,11 @@ export function ResourceFormGenerator({
           schemaMap[fieldKey] = field.required 
             ? z.string().min(1, { message: `${field.label} is required` })
             : z.string().optional();
+          break;
+        case 'file':
+          schemaMap[fieldKey] = field.required
+            ? z.any().refine(val => val instanceof File, { message: `${field.label} is required` })
+            : z.any().optional();
           break;
         // Ready for future expansion with other field types
         default:
@@ -92,6 +98,10 @@ export function ResourceFormGenerator({
                   case 'select':
                     return (
                       <InputSelect id={fieldKey} label={field.label} field={formField} options={field.options} />
+                    );
+                  case 'file':
+                    return (
+                      <InputFile id={fieldKey} field={formField} />
                     );
                   default:
                     return <InputText id={fieldKey} field={formField} />;

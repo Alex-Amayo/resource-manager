@@ -6,7 +6,7 @@ export interface ResourceData {
   [key: string]: any;
 }
 
-export type InputType = 'text' | 'number' | 'tags' | 'select' | 'textarea';
+export type InputType = 'text' | 'number' | 'tags' | 'select' | 'textarea' | 'file';
 
 // Only the minimal types for resource manager and table
 export interface FieldDef {

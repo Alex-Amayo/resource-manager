@@ -1,6 +1,6 @@
 import { ResourceManager } from "./resource-manager";
 import type { FieldDef } from "./types";
-import type { StoryFn } from "@storybook/react-vite";
+import type { StoryFn, Meta } from "@storybook/react-vite";
 
 // No need to extend FieldTypes for this simple example, use FieldDef<Contact>[]
 const fields: FieldDef[] = [
@@ -25,17 +25,33 @@ const fields: FieldDef[] = [
         renderCell: (value) => value,
         fieldType: "string",
     },
+    {
+        key: "file",
+        label: "File",
+        inputType: "file",
+        renderCell: (value) => (value ? value.name || value : ""),
+        fieldType: "file",
+    },
 ];
 
 const data = [
-    { id: 1, name: "Alice", email: "alice@example.com" },
-    { id: 2, name: "Bob", email: "bob@example.com" },
+    { id: 1, name: "Alice", email: "alice@example.com", file: undefined },
+    { id: 2, name: "Bob", email: "bob@example.com", file: undefined },
 ];
 
-export default {
+const meta: Meta<typeof ResourceManager> = {
     title: "Components/ResourceManager",
     component: ResourceManager,
-};
+    tags: ["autodocs"],
+    args: {},
+    parameters: {
+        actions: {
+            handles: ["create", "update", "delete"],
+        },
+    },
+} satisfies Meta<typeof ResourceManager>;
+
+export default meta;
 
 type Story = StoryFn<typeof ResourceManager>;
 const Template: Story = (args) => <ResourceManager {...args as any} />;
@@ -46,7 +62,15 @@ Basic.args = {
     resourceName: "Contact",
     data: data,
     fields: fields,
-    create: (values) => console.log("create", values),
+    create: (values) => {
+        if (values.file) {
+            // eslint-disable-next-line no-console
+            console.log("create file:", values.file.name || values.file);
+        } else {
+            // eslint-disable-next-line no-console
+            console.log("create", values);
+        }
+    },
     update: (id, values) => console.log("update", id, values),
     delete: (id) => console.log("delete", id),
 };
