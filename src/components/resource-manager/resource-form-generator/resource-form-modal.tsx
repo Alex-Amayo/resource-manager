@@ -10,7 +10,7 @@ import { ResourceFormGenerator } from "./resource-form-generator";
  * 
  * Handles the dialog UI wrapper around the form component
  */
-export function ResourceFormModal<T extends ResourceData>({
+export function ResourceFormModal({
   isOpen,
   onOpenChange,
   initialValues,
@@ -19,7 +19,7 @@ export function ResourceFormModal<T extends ResourceData>({
   mode,
   resourceName,
   fields
-}: ResourceFormModalProps<T>) {
+}: ResourceFormModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="bg-white rounded shadow-lg p-6 min-w-[350px] max-w-[95vw]">

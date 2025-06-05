@@ -108,8 +108,6 @@ export function ResourceManager({
       {/* Create button */}
       <div className="flex justify-end">
         <Button
-        variant="default"
-        className="bg-blue-500 text-primary hover:bg-blue-600"
         onClick={handleOpenCreate}
         >
           Add {resourceName}

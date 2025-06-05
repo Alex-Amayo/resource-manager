@@ -12,7 +12,7 @@ const theme = create({
   colorSecondary: '#3d4f8d',
   
   // Brand information
-  brandImage: 'https://eqdlycoo48.ufs.sh/f/e0ig7JYH0pJBFi2eMrhLtA3BXgw6RyGusFhQziaPHIcdjWm5',
+  brandTitle: 'Resource Manager',
   brandUrl: 'https://yourwebsite.com',
   brandTarget: '_self',
 });
