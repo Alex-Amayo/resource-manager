@@ -48,6 +48,16 @@ const meta: Meta<typeof ResourceManager> = {
         actions: {
             handles: ["create", "update", "delete"],
         },
+        controls: {
+            // hide defaultValues from both Controls table and Playground
+            exclude: ["defaultValues"],
+        },
+    },
+    argTypes: {
+        defaultValues: {
+            control: false,           // no control widget
+            table: {disable: true}, // no column in the table
+        },
     },
 } satisfies Meta<typeof ResourceManager>;
 
@@ -64,10 +74,8 @@ Basic.args = {
     fields: fields,
     create: (values) => {
         if (values.file) {
-            // eslint-disable-next-line no-console
             console.log("create file:", values.file.name || values.file);
         } else {
-            // eslint-disable-next-line no-console
             console.log("create", values);
         }
     },

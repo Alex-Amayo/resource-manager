@@ -20,7 +20,7 @@ export function ResourceActionsMenu({ onEdit, onDelete }: ResourceActionsMenuPro
           <MoreHorizontal />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="w-56">
+      <DropdownMenuContent align="start" className="w-36">
         <DropdownMenuItem 
           onClick={onEdit}
           className="cursor-pointer" 
