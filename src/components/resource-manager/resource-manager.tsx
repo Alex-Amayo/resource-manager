@@ -60,7 +60,7 @@ export function ResourceManager({
     } else if (mode === "edit" && editIdx !== null) {
       const id = data[editIdx]?.id;
       if (id) {
-        update(String(id), values);
+        update(id, values);
       }
     }
     handleCloseModal();
@@ -69,7 +69,7 @@ export function ResourceManager({
   const handleDelete = (idx: number) => {
     const id = data[idx]?.id;
     if (id) {
-      deleteResource(String(id));
+      deleteResource(id);
     }
   };
 
