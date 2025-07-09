@@ -28,6 +28,7 @@ export interface ResourceManagerProps {
   fields: FieldDef[];
   create: (values: Partial<ResourceData>) => void;
   update: (id: string | number, values: Partial<ResourceData>) => void;
+  className?: string;
   delete: (id: string | number) => void;
   defaultValues?: Partial<ResourceData>;
 }
@@ -39,4 +40,5 @@ export interface ResourceTableProps {
   onDelete: (index: number) => void;
   renderActionsMenu: (rowIdx: number, onEdit: () => void, onDelete: () => void) => ReactNode;
   resourceName: string;
+  className?: string;
 }

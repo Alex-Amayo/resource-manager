@@ -1,4 +1,5 @@
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectItem, SelectLabel } from '../../../ui/select.tsx';
+import { cn } from '../../../../lib/utils.ts';
 import type { ControllerRenderProps } from 'react-hook-form';
 
 interface Option {
@@ -17,7 +18,7 @@ export function InputSelect({ label, field, options }: InputSelectProps) {
   const value = field.value ?? '';
   return (
     <Select value={value} onValueChange={field.onChange}>
-      <SelectTrigger className="w-full">
+      <SelectTrigger className={cn("w-full")}>
         <SelectValue placeholder={`Select ${label}`} />
       </SelectTrigger>
       <SelectContent>

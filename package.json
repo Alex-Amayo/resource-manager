@@ -6,8 +6,40 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "bootstrap": "pnpm install",
-    "docs": "pnpm --filter resource-manager-docs run dev",
-    "storybook": "pnpm --filter resource-manager-docs storybook"
+    
+    "dev": "pnpm run dev:ui & pnpm run docs",
+    "dev:ui": "pnpm --filter resource-manager-ui run dev",
+    "dev:docs": "pnpm --filter resource-manager-docs run dev",
+    
+    "build": "pnpm run build:ui && pnpm run build:docs",
+    "build:ui": "pnpm --filter resource-manager-ui run build",
+    "build:docs": "pnpm --filter resource-manager-docs run build",
+    
+    "clean": "pnpm --filter resource-manager-ui run clean && pnpm --filter resource-manager-docs run clean",
+    "clean:ui": "pnpm --filter resource-manager-ui run clean",
+    "clean:docs": "pnpm --filter resource-manager-docs run clean",
+    
+    "lint": "pnpm --filter resource-manager-ui run lint && pnpm --filter resource-manager-docs run lint",
+    "lint:ui": "pnpm --filter resource-manager-ui run lint",
+    "lint:docs": "pnpm --filter resource-manager-docs run lint",
+    "lint:fix": "pnpm --filter resource-manager-ui run lint --fix && pnpm --filter resource-manager-docs run lint --fix",
+    
+    "type-check": "pnpm --filter resource-manager-ui run type-check && pnpm --filter resource-manager-docs run type-check",
+    "type-check:ui": "pnpm --filter resource-manager-ui run type-check",
+    
+    "storybook": "pnpm --filter resource-manager-docs storybook",
+    "storybook:build": "pnpm --filter resource-manager-docs run build-storybook",
+    "storybook:docs": "pnpm --filter resource-manager-docs run storybook-docs",
+    
+    "preview": "pnpm --filter resource-manager-docs run preview",
+    "preview:docs": "pnpm --filter resource-manager-docs run preview",
+    
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
+    "changeset:publish": "pnpm run build && changeset publish",
+    
+    "release": "pnpm run build && pnpm publish --filter resource-manager-ui",
+    "release:dry": "pnpm run build && pnpm publish --filter resource-manager-ui --dry-run"
   },
   "keywords": [],
   "author": "",

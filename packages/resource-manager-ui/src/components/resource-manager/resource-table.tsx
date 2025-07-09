@@ -1,4 +1,5 @@
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "../ui/table.tsx";
+import { cn } from "../../lib/utils.ts";
 import type { ResourceTableProps } from "./types.ts";
 
 export function ResourceTable({
@@ -7,18 +8,19 @@ export function ResourceTable({
   onEdit,
   onDelete,
   renderActionsMenu,
-  resourceName
+  resourceName,
+  className
 }: ResourceTableProps) {
   if (!data || data.length === 0) {
     return (
-      <div className="text-center py-8 text-gray-500">
+      <div className={cn("text-center py-8 text-muted-foreground", className)}>
         No {resourceName.toLowerCase()}s found.
       </div>
     );
   }
 
   return (
-    <div className="rounded-md border">
+    <div className={cn("rounded-md border", className)}>
       <Table>
         <TableHeader>
           <TableRow>

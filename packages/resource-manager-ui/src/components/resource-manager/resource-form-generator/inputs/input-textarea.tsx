@@ -1,4 +1,5 @@
 import { Textarea } from '../../../ui/textarea.tsx';
+import { cn } from '../../../../lib/utils.ts';
 import type { ControllerRenderProps } from 'react-hook-form';
 
 interface InputTextareaProps {
@@ -11,7 +12,7 @@ export function InputTextarea({ id, field }: InputTextareaProps) {
   return (
     <Textarea
       id={id}
-      className="w-full p-2 border border-gray-300 rounded-md"
+      className={cn("w-full")}
       rows={4}
       {...field}
       value={value}

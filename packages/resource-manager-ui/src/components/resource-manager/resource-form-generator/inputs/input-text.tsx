@@ -1,4 +1,5 @@
 import { Input } from '../../../ui/input.tsx';
+import { cn } from '../../../../lib/utils.ts';
 import type { ControllerRenderProps } from 'react-hook-form';
 
 interface InputTextProps {
@@ -12,7 +13,7 @@ export function InputText({ id, field }: InputTextProps) {
     <Input
       id={id}
       type="text"
-      className="w-full"
+      className={cn("w-full")}
       {...field}
       value={value}
     />

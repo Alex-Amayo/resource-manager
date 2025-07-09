@@ -3,6 +3,7 @@ import type { FieldValues } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Button } from '../../ui/button.tsx';
+import { cn } from '../../../lib/utils.ts';
 import { InputText } from './inputs/input-text.tsx';
 import { InputTextarea } from './inputs/input-textarea.tsx';
 import { InputSelect } from './inputs/input-select.tsx';
@@ -69,16 +70,16 @@ export function ResourceFormGenerator({
   };
 
   return (
-    <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-4">
+    <form onSubmit={handleSubmit(onFormSubmit)} className={cn("space-y-4")}>
       {fields.map((field) => {
         const fieldKey = String(field.key);
         return (
-          <div key={fieldKey} className="space-y-2">
+          <div key={fieldKey} className={cn("space-y-2")}>
             <label 
               htmlFor={fieldKey} 
-              className="block text-sm font-medium text-gray-700"
+              className={cn("block text-sm font-medium text-foreground")}
             >
-              {field.label} {field.required && <span className="text-red-500">*</span>}
+              {field.label} {field.required && <span className={cn("text-destructive")}>*</span>}
             </label>
             
             <Controller
@@ -110,7 +111,7 @@ export function ResourceFormGenerator({
             />
             
             {errors[fieldKey] && (
-              <p className="text-red-500 text-sm">
+              <p className={cn("text-destructive text-sm")}>
                 {errors[fieldKey]?.message?.toString()}
               </p>
             )}
@@ -118,7 +119,7 @@ export function ResourceFormGenerator({
         );
       })}
       
-      <div className="flex justify-end space-x-2 pt-4">
+      <div className={cn("flex justify-end space-x-2 pt-4")}>
         <Button type="button" variant="default" onClick={onCancel}>
           Cancel
         </Button>

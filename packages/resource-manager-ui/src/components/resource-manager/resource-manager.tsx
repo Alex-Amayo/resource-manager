@@ -7,6 +7,7 @@ import { ResourceActionsMenu } from "./resource-actions-menu.tsx";
 import { Button } from "../ui/button.tsx";
 import { PlusCircle } from "lucide-react";
 import { ResourceFormModal } from "./resource-form-generator/resource-form-modal.tsx";
+import { cn } from "../../lib/utils.ts";
 
 /**
  * Generic ResourceManager component for displaying and managing resources.
@@ -26,6 +27,7 @@ export function ResourceManager({
   delete: deleteResource,
   resourceName = "Resource",
   title,
+  className,
 }: ResourceManagerProps) {
   // Modal/form state
   const [modalOpen, setModalOpen] = React.useState(false);
@@ -92,10 +94,10 @@ export function ResourceManager({
   );
 
   return (
-    <div className="container flex flex-col gap-4">
+    <div className={cn("container flex flex-col gap-4", className)}>
       {/* Header with title */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">{title}</h1>
+      <div className={cn("flex justify-between items-center")}>
+        <h1 className={cn("text-2xl font-bold")}>{title}</h1>
       </div>
       <ResourceTable
         data={data}
@@ -106,7 +108,7 @@ export function ResourceManager({
         resourceName={resourceName}
       />
       {/* Create button */}
-      <div className="flex justify-end">
+      <div className={cn("flex justify-end")}>
         <Button
         onClick={handleOpenCreate}
         >

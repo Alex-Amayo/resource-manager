@@ -1,5 +1,5 @@
-import { Dialog, DialogTitle } from "@radix-ui/react-dialog";
-import { DialogContent, DialogHeader } from "../../ui/dialog.tsx";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../../ui/dialog.tsx";
+import { cn } from "../../../lib/utils.ts";
 import type { ResourceFormModalProps } from "./form-types.ts";
 import { ResourceFormGenerator } from "./resource-form-generator.tsx";
 
@@ -21,7 +21,7 @@ export function ResourceFormModal({
 }: ResourceFormModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-white rounded shadow-lg p-6 min-w-[350px] max-w-[95vw]">
+      <DialogContent className={cn("bg-white rounded shadow-lg p-6 min-w-[350px] max-w-[95vw]")}>
         <DialogHeader>
           <DialogTitle>
             {mode === "add" ? "Create New" : "Edit"} {resourceName}

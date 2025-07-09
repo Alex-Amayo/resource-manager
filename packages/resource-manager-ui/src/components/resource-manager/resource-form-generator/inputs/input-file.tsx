@@ -1,4 +1,5 @@
 import { Input } from '../../../ui/input.tsx';
+import { cn } from '../../../../lib/utils.ts';
 import type { ControllerRenderProps } from 'react-hook-form';
 
 interface InputFileProps {
@@ -11,7 +12,7 @@ export function InputFile({ id, field }: InputFileProps) {
     <Input
       id={id}
       type="file"
-      className="w-full"
+      className={cn("w-full")}
       onChange={e => {
         const file = e.target.files?.[0] || null;
         field.onChange(file);

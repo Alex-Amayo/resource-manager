@@ -1,11 +1,7 @@
 import { Button } from "../ui/button.tsx";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu.tsx";
 import { MoreHorizontal } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-} from "../ui/dropdown-menu.tsx";
+import { cn } from "../../lib/utils.ts";
 
 interface ResourceActionsMenuProps {
   onEdit: () => void;
@@ -20,16 +16,16 @@ export function ResourceActionsMenu({ onEdit, onDelete }: ResourceActionsMenuPro
           <MoreHorizontal />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="w-36">
+      <DropdownMenuContent align="start" className={cn("w-36")}>
         <DropdownMenuItem 
           onClick={onEdit}
-          className="cursor-pointer" 
+          className={cn("cursor-pointer")}
         >
           Edit
         </DropdownMenuItem>
         <DropdownMenuItem 
           onClick={onDelete} 
-          className="text-destructive cursor-pointer"
+          className={cn("text-destructive cursor-pointer")}
         >
           Delete
         </DropdownMenuItem>
