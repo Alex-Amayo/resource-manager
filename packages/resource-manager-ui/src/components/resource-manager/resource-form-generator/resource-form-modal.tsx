@@ -1,4 +1,3 @@
-import type { ResourceData } from "../types.ts";
 import { Dialog, DialogTitle } from "@radix-ui/react-dialog";
 import { DialogContent, DialogHeader } from "../../ui/dialog.tsx";
 import type { ResourceFormModalProps } from "./form-types.ts";

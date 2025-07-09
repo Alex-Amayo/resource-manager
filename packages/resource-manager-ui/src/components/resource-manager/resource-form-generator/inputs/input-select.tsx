@@ -13,7 +13,7 @@ interface InputSelectProps {
   options?: Option[];
 }
 
-export function InputSelect({ id, label, field, options }: InputSelectProps) {
+export function InputSelect({ label, field, options }: InputSelectProps) {
   const value = field.value ?? '';
   return (
     <Select value={value} onValueChange={field.onChange}>

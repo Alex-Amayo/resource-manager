@@ -27,8 +27,8 @@ export interface ResourceManagerProps {
   data: ResourceData[];
   fields: FieldDef[];
   create: (values: Partial<ResourceData>) => void;
-  update: (id: string , values: Partial<ResourceData>) => void;
-  delete: (id: string ) => void;
+  update: (id: string | number, values: Partial<ResourceData>) => void;
+  delete: (id: string | number) => void;
   defaultValues?: Partial<ResourceData>;
 }
 

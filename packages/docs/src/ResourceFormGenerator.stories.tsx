@@ -106,7 +106,7 @@ export const WithValidationErrors: Story = {
             category: '', // This will trigger validation error
         },
     },
-    play: async ({ canvasElement }) => {
+    play: async ({ }) => {
         // You could add interactions here to demonstrate validation
         // using the @storybook/testing-library
     },
