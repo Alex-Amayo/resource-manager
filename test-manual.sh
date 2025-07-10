@@ -103,6 +103,15 @@ else
 fi
 cd ../..
 
+# Test 7: Verify ui/ folder removed (no longer needed)
+echo ""
+echo "📋 Test 7: Obsolete ui/ folder cleanup"
+if [ ! -d "packages/registry/ui" ]; then
+    echo "✅ ui/ folder correctly removed (using registryDependencies instead)"
+else
+    echo "⚠️  ui/ folder still exists (should be removed since using registryDependencies)"
+fi
+
 # Summary
 echo ""
 echo "🎉 All manual tests passed!"
