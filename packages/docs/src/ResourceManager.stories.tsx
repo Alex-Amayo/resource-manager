@@ -1,5 +1,4 @@
-import { ResourceManager} from "./components/resource-manager/resource-manager";
-import type { FieldDef } from "./components/resource-manager/types";
+import { ResourceManager, type FieldDef } from "./components/resource-manager";
 import type { StoryFn, Meta } from "@storybook/react-vite";
 
 // No need to extend FieldTypes for this simple example, use FieldDef<Contact>[]

@@ -1,7 +1,6 @@
 // ResourceFormGenerator.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { ResourceFormGenerator } from './components/resource-manager/resource-form-generator/resource-form-generator';
-import type { FieldDef } from './components/resource-manager/types';
+import { ResourceFormGenerator, type FieldDef } from './components/resource-manager';
 
 // Sample fields configuration
 const sampleFields: FieldDef[] = [

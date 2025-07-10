@@ -7,7 +7,7 @@ import { ResourceActionsMenu } from "./resource-actions-menu.tsx";
 import { Button } from "../ui/button";
 import { PlusCircle } from "lucide-react";
 import { ResourceFormModal } from "./resource-form-generator/resource-form-modal.tsx";
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
 
 /**
  * Generic ResourceManager component for displaying and managing resources.

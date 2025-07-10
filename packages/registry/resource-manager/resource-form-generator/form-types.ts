@@ -1,7 +1,5 @@
-import type { FieldDef } from "../types.ts";
+import type { FieldDef, ModalMode } from "../types.ts";
 import type { ResourceData } from "../types.ts";
-
-export type ModalMode = "add" | "edit";
 
 export interface ResourceFormGeneratorProps {
   fields: FieldDef[];
