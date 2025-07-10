@@ -166,6 +166,25 @@ async function addComponent(componentName, options = {}) {
       await transformImports(targetPath, outputPath);
     }
     await installDependencies(component.dependencies);
+    if (component.registryDependencies && component.registryDependencies.length > 0) {
+      spinner.text = "Installing shadcn/ui dependencies...";
+      try {
+        const { execSync: execSync2 } = require("child_process");
+        execSync2("npx shadcn@latest --version", { stdio: "ignore" });
+        for (const dep of component.registryDependencies) {
+          try {
+            execSync2(`npx shadcn@latest add ${dep} --yes`, { stdio: "inherit" });
+          } catch (error) {
+            console.warn(import_chalk2.default.yellow(`Warning: Could not install ${dep}. Please install manually with: npx shadcn@latest add ${dep}`));
+          }
+        }
+      } catch (error) {
+        console.log(import_chalk2.default.yellow("\n\u26A0\uFE0F  shadcn/ui CLI not found. Please install dependencies manually:"));
+        component.registryDependencies.forEach((dep) => {
+          console.log(import_chalk2.default.gray(`   npx shadcn@latest add ${dep}`));
+        });
+      }
+    }
     if (component.localDependencies && component.localDependencies.length > 0) {
       spinner.text = "Installing local dependencies...";
       for (const dep of component.localDependencies) {
@@ -199,30 +218,19 @@ async function listComponents(options = {}) {
     const registry = await getRegistry();
     const components = registry.components;
     console.log(import_chalk3.default.blue("\u{1F4E6} Available Components\n"));
-    const filteredComponents = options.type ? Object.entries(components).filter(([, component]) => component.type === options.type) : Object.entries(components);
-    if (filteredComponents.length === 0) {
+    const componentEntries = Object.entries(components);
+    if (componentEntries.length === 0) {
       console.log(import_chalk3.default.gray("No components found."));
       return;
     }
-    const groupedComponents = filteredComponents.reduce((acc, [componentName, component]) => {
-      const type = component.type;
-      if (!acc[type]) acc[type] = [];
-      acc[type].push(component);
-      return acc;
-    }, {});
-    Object.entries(groupedComponents).forEach(([type, typeComponents]) => {
-      console.log(import_chalk3.default.yellow(`
-${type.toUpperCase()} Components:`));
-      typeComponents.forEach((component) => {
-        console.log(`  ${import_chalk3.default.green("\u25CF")} ${import_chalk3.default.bold(component.name)} - ${import_chalk3.default.gray(component.description)}`);
-        if (component.dependencies.length > 0) {
-          console.log(`    ${import_chalk3.default.gray("Dependencies:")} ${component.dependencies.join(", ")}`);
-        }
-      });
+    componentEntries.forEach(([, component]) => {
+      console.log(`  ${import_chalk3.default.green("\u25CF")} ${import_chalk3.default.bold(component.name)} - ${import_chalk3.default.gray(component.description)}`);
+      if (component.dependencies.length > 0) {
+        console.log(`    ${import_chalk3.default.gray("Dependencies:")} ${component.dependencies.join(", ")}`);
+      }
     });
     console.log(import_chalk3.default.blue("\n\u{1F4CB} Usage:"));
     console.log(import_chalk3.default.gray("  resource-manager add <component-name>"));
-    console.log(import_chalk3.default.gray("  resource-manager add button --path ./src/components"));
   } catch (error) {
     console.error(import_chalk3.default.red(`Failed to list components: ${error}`));
   }
@@ -284,6 +292,42 @@ async function initProject(options = {}) {
           return;
         }
       }
+    }
+    const componentsJsonPath = import_path4.default.join(process.cwd(), "components.json");
+    const hasShadcnConfig = await import_fs_extra4.default.pathExists(componentsJsonPath);
+    if (!hasShadcnConfig) {
+      console.log(import_chalk5.default.yellow("\u26A0\uFE0F  shadcn/ui not detected. Resource Manager requires shadcn/ui to be set up."));
+      if (!options.yes) {
+        const { setupShadcn } = await (0, import_prompts.default)({
+          type: "confirm",
+          name: "setupShadcn",
+          message: "Would you like to run shadcn/ui init now?",
+          initial: true
+        });
+        if (setupShadcn) {
+          console.log(import_chalk5.default.blue("\n\u{1F3A8} Setting up shadcn/ui..."));
+          try {
+            const { execSync: execSync2 } = require("child_process");
+            execSync2("npx shadcn@latest init", { stdio: "inherit" });
+            console.log(import_chalk5.default.green("\u2705 shadcn/ui initialized successfully!"));
+          } catch (error) {
+            console.log(import_chalk5.default.red("\u274C Failed to initialize shadcn/ui. Please run manually:"));
+            console.log(import_chalk5.default.gray("   npx shadcn@latest init"));
+            return;
+          }
+        } else {
+          console.log(import_chalk5.default.yellow("\n\u26A0\uFE0F  Please set up shadcn/ui first:"));
+          console.log(import_chalk5.default.gray("   npx shadcn@latest init"));
+          console.log(import_chalk5.default.gray("   Then run: resource-manager init"));
+          return;
+        }
+      } else {
+        console.log(import_chalk5.default.yellow("\n\u26A0\uFE0F  Please set up shadcn/ui first:"));
+        console.log(import_chalk5.default.gray("   npx shadcn@latest init"));
+        return;
+      }
+    } else {
+      console.log(import_chalk5.default.green("\u2705 shadcn/ui configuration found"));
     }
     const componentsDir = import_path4.default.join(process.cwd(), "src", "components");
     await import_fs_extra4.default.ensureDir(import_path4.default.join(componentsDir, "ui"));

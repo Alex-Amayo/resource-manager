@@ -25,7 +25,8 @@ interface ComponentMetadata {
     files: string[];
     dependencies: string[];
     devDependencies: string[];
-    localDependencies: string[];
+    localDependencies?: string[];
+    registryDependencies?: string[];
     description: string;
     docs?: string;
 }

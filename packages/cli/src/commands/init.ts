@@ -63,6 +63,47 @@ export async function initProject(options: InitOptions = {}) {
       }
     }
 
+    // Check for shadcn/ui setup
+    const componentsJsonPath = path.join(process.cwd(), 'components.json');
+    const hasShadcnConfig = await fs.pathExists(componentsJsonPath);
+
+    if (!hasShadcnConfig) {
+      console.log(chalk.yellow('⚠️  shadcn/ui not detected. Resource Manager requires shadcn/ui to be set up.'));
+      
+      if (!options.yes) {
+        const { setupShadcn } = await prompts({
+          type: 'confirm',
+          name: 'setupShadcn',
+          message: 'Would you like to run shadcn/ui init now?',
+          initial: true
+        });
+
+        if (setupShadcn) {
+          console.log(chalk.blue('\n🎨 Setting up shadcn/ui...'));
+          try {
+            const { execSync } = require('child_process');
+            execSync('npx shadcn@latest init', { stdio: 'inherit' });
+            console.log(chalk.green('✅ shadcn/ui initialized successfully!'));
+          } catch (error) {
+            console.log(chalk.red('❌ Failed to initialize shadcn/ui. Please run manually:'));
+            console.log(chalk.gray('   npx shadcn@latest init'));
+            return;
+          }
+        } else {
+          console.log(chalk.yellow('\n⚠️  Please set up shadcn/ui first:'));
+          console.log(chalk.gray('   npx shadcn@latest init'));
+          console.log(chalk.gray('   Then run: resource-manager init'));
+          return;
+        }
+      } else {
+        console.log(chalk.yellow('\n⚠️  Please set up shadcn/ui first:'));
+        console.log(chalk.gray('   npx shadcn@latest init'));
+        return;
+      }
+    } else {
+      console.log(chalk.green('✅ shadcn/ui configuration found'));
+    }
+
     // Create components directory structure
     const componentsDir = path.join(process.cwd(), 'src', 'components');
     await fs.ensureDir(path.join(componentsDir, 'ui'));

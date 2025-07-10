@@ -13,6 +13,10 @@
     "build:cli": "pnpm --filter @resource-manager/cli build",
     "build:registry": "pnpm --filter @resource-manager/registry build",
     
+    "test": "pnpm --filter @resource-manager/cli test",
+    "test:run": "pnpm --filter @resource-manager/cli test:run",
+    "test:integration": "pnpm --filter @resource-manager/cli test:integration",
+    
     "clean": "pnpm -r clean",
     "lint": "pnpm -r lint",
     "lint:fix": "pnpm -r lint:fix",

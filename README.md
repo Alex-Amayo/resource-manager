@@ -19,19 +19,32 @@ A comprehensive resource management solution for React applications. Get product
 
 ### For Users (Add components to your project)
 
+**Prerequisites:**
+- A React/Next.js project with shadcn/ui initialized
+- Run `npx shadcn@latest init` if you haven't already
+
 ```bash
 # Install CLI globally
 npm install -g @resource-manager/cli
 
-# Initialize your project
+# Initialize your project (sets up resource-manager config)
 resource-manager init
 
-# Add components
-resource-manager add button
+# Add the resource manager component (automatically installs shadcn/ui dependencies)
 resource-manager add resource-manager
 
 # List all available components
 resource-manager list
+```
+
+**Note:** The CLI will automatically install required shadcn/ui components. If you prefer manual control:
+
+```bash
+# Install shadcn/ui dependencies first
+npx shadcn@latest add table button dropdown-menu dialog input textarea select utils
+
+# Then add resource-manager components
+resource-manager add resource-manager
 ```
 
 ### For Contributors (Develop the CLI)

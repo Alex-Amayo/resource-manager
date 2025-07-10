@@ -54,7 +54,32 @@ export async function addComponent(componentName: string, options: AddOptions = 
     // Install dependencies
     await installDependencies(component.dependencies);
 
-    // Handle local dependencies recursively
+    // Handle registry dependencies (shadcn/ui components)
+    if (component.registryDependencies && component.registryDependencies.length > 0) {
+      spinner.text = 'Installing shadcn/ui dependencies...';
+      
+      // Check if shadcn is installed
+      try {
+        const { execSync } = require('child_process');
+        execSync('npx shadcn@latest --version', { stdio: 'ignore' });
+        
+        // Install each registry dependency
+        for (const dep of component.registryDependencies) {
+          try {
+            execSync(`npx shadcn@latest add ${dep} --yes`, { stdio: 'inherit' });
+          } catch (error) {
+            console.warn(chalk.yellow(`Warning: Could not install ${dep}. Please install manually with: npx shadcn@latest add ${dep}`));
+          }
+        }
+      } catch (error) {
+        console.log(chalk.yellow('\n⚠️  shadcn/ui CLI not found. Please install dependencies manually:'));
+        component.registryDependencies.forEach(dep => {
+          console.log(chalk.gray(`   npx shadcn@latest add ${dep}`));
+        });
+      }
+    }
+
+    // Handle local dependencies recursively (for utils, etc.)
     if (component.localDependencies && component.localDependencies.length > 0) {
       spinner.text = 'Installing local dependencies...';
       
