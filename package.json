@@ -1,45 +1,31 @@
 {
   "name": "resource-manager",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "CLI-first resource management components for React. Copy components as source files with automatic dependency resolution.",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "bootstrap": "pnpm install",
+    "dev": "pnpm --filter resource-manager-docs dev",
+    "dev:docs": "pnpm --filter resource-manager-docs dev",
+    "dev:cli": "pnpm --filter @resource-manager/cli dev",
     
-    "dev": "pnpm run dev:ui & pnpm run docs",
-    "dev:ui": "pnpm --filter resource-manager-ui run dev",
-    "dev:docs": "pnpm --filter resource-manager-docs run dev",
+    "build": "pnpm --filter @resource-manager/cli build && pnpm --filter resource-manager-docs build",
+    "build:docs": "pnpm --filter resource-manager-docs build", 
+    "build:cli": "pnpm --filter @resource-manager/cli build",
+    "build:registry": "pnpm --filter @resource-manager/registry build",
     
-    "build": "pnpm run build:ui && pnpm run build:docs",
-    "build:ui": "pnpm --filter resource-manager-ui run build",
-    "build:docs": "pnpm --filter resource-manager-docs run build",
-    
-    "clean": "pnpm --filter resource-manager-ui run clean && pnpm --filter resource-manager-docs run clean",
-    "clean:ui": "pnpm --filter resource-manager-ui run clean",
-    "clean:docs": "pnpm --filter resource-manager-docs run clean",
-    
-    "lint": "pnpm --filter resource-manager-ui run lint && pnpm --filter resource-manager-docs run lint",
-    "lint:ui": "pnpm --filter resource-manager-ui run lint",
-    "lint:docs": "pnpm --filter resource-manager-docs run lint",
-    "lint:fix": "pnpm --filter resource-manager-ui run lint --fix && pnpm --filter resource-manager-docs run lint --fix",
-    
-    "type-check": "pnpm --filter resource-manager-ui run type-check && pnpm --filter resource-manager-docs run type-check",
-    "type-check:ui": "pnpm --filter resource-manager-ui run type-check",
+    "clean": "pnpm -r clean",
+    "lint": "pnpm -r lint",
+    "lint:fix": "pnpm -r lint:fix",
+    "type-check": "pnpm -r type-check",
     
     "storybook": "pnpm --filter resource-manager-docs storybook",
-    "storybook:build": "pnpm --filter resource-manager-docs run build-storybook",
-    "storybook:docs": "pnpm --filter resource-manager-docs run storybook-docs",
-    
-    "preview": "pnpm --filter resource-manager-docs run preview",
-    "preview:docs": "pnpm --filter resource-manager-docs run preview",
+    "preview": "pnpm --filter resource-manager-docs preview",
     
     "changeset": "changeset",
     "changeset:version": "changeset version",
-    "changeset:publish": "pnpm run build && changeset publish",
+    "changeset:publish": "pnpm build && changeset publish",
     
-    "release": "pnpm run build && pnpm publish --filter resource-manager-ui",
-    "release:dry": "pnpm run build && pnpm publish --filter resource-manager-ui --dry-run"
+    "release:cli": "pnpm build:cli && pnpm publish --filter @resource-manager/cli"
   },
   "keywords": [],
   "author": "",

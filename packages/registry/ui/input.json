@@ -1,0 +1,10 @@
+{
+  "name": "input",
+  "type": "ui",
+  "files": ["ui/input.tsx"],
+  "dependencies": [],
+  "devDependencies": [],
+  "localDependencies": ["@/lib/utils"],
+  "description": "A form input component with consistent styling",
+  "docs": "https://ui.shadcn.com/docs/components/input"
+}

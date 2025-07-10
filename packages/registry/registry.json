@@ -1,0 +1,193 @@
+{
+  "version": "1.0.0",
+  "components": {
+    "button": {
+      "name": "button",
+      "type": "ui",
+      "files": [
+        "ui/button.tsx"
+      ],
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "devDependencies": [],
+      "localDependencies": [
+        "@/lib/utils"
+      ],
+      "description": "A customizable button component with variants and sizes",
+      "docs": "https://ui.shadcn.com/docs/components/button"
+    },
+    "dialog": {
+      "name": "dialog",
+      "type": "ui",
+      "files": [
+        "ui/dialog.tsx"
+      ],
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "devDependencies": [],
+      "localDependencies": [
+        "@/lib/utils"
+      ],
+      "description": "A modal dialog component",
+      "docs": "https://ui.shadcn.com/docs/components/dialog"
+    },
+    "dropdown-menu": {
+      "name": "dropdown-menu",
+      "type": "ui",
+      "files": [
+        "ui/dropdown-menu.tsx"
+      ],
+      "dependencies": [
+        "@radix-ui/react-dropdown-menu",
+        "lucide-react"
+      ],
+      "devDependencies": [],
+      "localDependencies": [
+        "@/lib/utils"
+      ],
+      "description": "A dropdown menu component",
+      "docs": "https://ui.shadcn.com/docs/components/dropdown-menu"
+    },
+    "input": {
+      "name": "input",
+      "type": "ui",
+      "files": [
+        "ui/input.tsx"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "localDependencies": [
+        "@/lib/utils"
+      ],
+      "description": "A form input component with consistent styling",
+      "docs": "https://ui.shadcn.com/docs/components/input"
+    },
+    "select": {
+      "name": "select",
+      "type": "ui",
+      "files": [
+        "ui/select.tsx"
+      ],
+      "dependencies": [
+        "@radix-ui/react-select",
+        "lucide-react"
+      ],
+      "devDependencies": [],
+      "localDependencies": [
+        "@/lib/utils"
+      ],
+      "description": "A select component built with Radix UI",
+      "docs": "https://ui.shadcn.com/docs/components/select"
+    },
+    "table": {
+      "name": "table",
+      "type": "ui",
+      "files": [
+        "ui/table.tsx"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "localDependencies": [
+        "@/lib/utils"
+      ],
+      "description": "A table component for displaying data",
+      "docs": "https://ui.shadcn.com/docs/components/table"
+    },
+    "textarea": {
+      "name": "textarea",
+      "type": "ui",
+      "files": [
+        "ui/textarea.tsx"
+      ],
+      "dependencies": [],
+      "devDependencies": [],
+      "localDependencies": [
+        "@/lib/utils"
+      ],
+      "description": "A textarea component for multi-line text input",
+      "docs": "https://ui.shadcn.com/docs/components/textarea"
+    },
+    "utils": {
+      "name": "utils",
+      "type": "lib",
+      "files": [
+        "lib/utils.ts"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "devDependencies": [],
+      "localDependencies": [],
+      "description": "Utility functions for merging class names",
+      "docs": ""
+    },
+    "resource-manager": {
+      "name": "resource-manager",
+      "type": "component",
+      "files": [
+        "resource-manager/index.tsx",
+        "resource-manager/resource-manager.tsx",
+        "resource-manager/resource-table.tsx",
+        "resource-manager/resource-actions-menu.tsx",
+        "resource-manager/types.ts"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "devDependencies": [],
+      "localDependencies": [
+        "@/lib/utils",
+        "@/components/ui/table",
+        "@/components/ui/button",
+        "@/components/ui/dropdown-menu"
+      ],
+      "description": "A complete resource manager component with table and actions",
+      "docs": ""
+    },
+    "resource-form-generator": {
+      "name": "resource-form-generator",
+      "type": "component",
+      "files": [
+        "resource-manager/resource-form-generator/resource-form-generator.tsx",
+        "resource-manager/resource-form-generator/resource-form-modal.tsx",
+        "resource-manager/resource-form-generator/form-types.ts",
+        "resource-manager/resource-form-generator/inputs/input-text.tsx",
+        "resource-manager/resource-form-generator/inputs/input-textarea.tsx",
+        "resource-manager/resource-form-generator/inputs/input-select.tsx",
+        "resource-manager/resource-form-generator/inputs/input-file.tsx"
+      ],
+      "dependencies": [
+        "react-hook-form",
+        "@hookform/resolvers",
+        "zod"
+      ],
+      "devDependencies": [],
+      "localDependencies": [
+        "@/lib/utils",
+        "@/components/ui/dialog",
+        "@/components/ui/button",
+        "@/components/ui/input",
+        "@/components/ui/textarea",
+        "@/components/ui/select"
+      ],
+      "description": "A dynamic form generator with validation for resource management",
+      "docs": ""
+    }
+  },
+  "styles": {
+    "globals.css": {
+      "name": "globals.css",
+      "type": "styles",
+      "files": [
+        "styles/globals.css"
+      ],
+      "description": "Global CSS variables and base styles for Tailwind CSS v4",
+      "required": true
+    }
+  }
+}

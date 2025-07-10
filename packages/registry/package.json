@@ -1,0 +1,13 @@
+{
+  "name": "@resource-manager/registry",
+  "version": "1.0.0",
+  "description": "Component registry for Resource Manager components",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-registry.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "fs-extra": "^11.2.0"
+  }
+}

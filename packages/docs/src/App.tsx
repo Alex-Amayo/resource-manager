@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import { Button } from "./components/ui/button.tsx";
 import './App.css';
 
 function App() {
   const [count, setCount] = useState(0)
   return (
     <>
-      <Button  />
       <h1 className="text-primary w-full">Vite + React</h1>
       <div className="card bg-primary">
         <button onClick={() => setCount((count) => count + 1)}>

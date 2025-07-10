@@ -1,23 +1,55 @@
 # Resource Manager
 
-A React UI library for resource management with dynamic forms and tables built with shadcn/ui components.
+A comprehensive resource management solution for React applications. Get production-ready components via CLI - no package installation required.
+
+## 🏗️ Architecture
+
+- **CLI-First Approach** - Copy components as source files, not packages
+- **shadcn/ui Compatible** - Works alongside existing shadcn/ui components  
+- **Tailwind CSS v4** - Modern styling with CSS variables
+- **TypeScript Ready** - Full type safety out of the box
 
 ## 📦 Packages
 
-- **`resource-manager-ui`** - Core UI components library
-- **`resource-manager-docs`** - Documentation and Storybook examples
+- **`@resource-manager/cli`** - CLI tool for adding components to your project
+- **`registry`** - Source components and metadata (not published)
+- **`docs`** - Documentation and Storybook examples
 
 ## 🚀 Quick Start
 
+### For Users (Add components to your project)
+
 ```bash
-# Install dependencies
-pnpm bootstrap
+# Install CLI globally
+npm install -g @resource-manager/cli
 
-# Start development environment (UI + docs)
-pnpm dev
+# Initialize your project
+resource-manager init
 
-# Build everything for production
-pnpm build
+# Add components
+resource-manager add button
+resource-manager add resource-manager
+
+# List all available components
+resource-manager list
+```
+
+### For Contributors (Develop the CLI)
+
+```bash
+# Clone and setup
+git clone <repository>
+cd resource-manager
+pnpm install
+
+# Start development
+pnpm dev:docs    # Storybook for component preview
+pnpm dev:cli     # CLI development mode
+
+# Build and test CLI
+pnpm build:cli
+cd packages/cli && npm link
+resource-manager list
 ```
 
 ## 📋 Available Commands
@@ -25,26 +57,24 @@ pnpm build
 ### Development
 
 ```bash
-# Start both UI dev mode and docs
+# Start docs/Storybook
 pnpm dev
 
-# Start just the UI package in watch mode
-pnpm dev:ui
+# Start CLI in watch mode  
+pnpm dev:cli
 
-# Start just the docs
-pnpm dev:docs
+# Build registry from source components
+pnpm build:registry
 ```
 
 ### Building
 
 ```bash
-# Build everything (UI + docs)
+# Build everything (CLI + docs)
 pnpm build
 
-# Build just the UI package
-pnpm build:ui
-
-# Build just the docs
+# Build individual packages
+pnpm build:cli
 pnpm build:docs
 ```
 

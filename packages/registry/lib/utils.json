@@ -1,0 +1,13 @@
+{
+  "name": "utils",
+  "type": "lib", 
+  "files": ["lib/utils.ts"],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "devDependencies": [],
+  "localDependencies": [],
+  "description": "Utility functions for merging class names",
+  "docs": ""
+}

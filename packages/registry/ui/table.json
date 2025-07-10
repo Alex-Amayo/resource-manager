@@ -1,0 +1,10 @@
+{
+  "name": "table",
+  "type": "ui",
+  "files": ["ui/table.tsx"],
+  "dependencies": [],
+  "devDependencies": [],
+  "localDependencies": ["@/lib/utils"],
+  "description": "A table component for displaying data",
+  "docs": "https://ui.shadcn.com/docs/components/table"
+}

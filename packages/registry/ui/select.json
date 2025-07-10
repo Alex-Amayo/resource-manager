@@ -1,0 +1,13 @@
+{
+  "name": "select",
+  "type": "ui",
+  "files": ["ui/select.tsx"],
+  "dependencies": [
+    "@radix-ui/react-select",
+    "lucide-react"
+  ],
+  "devDependencies": [],
+  "localDependencies": ["@/lib/utils"],
+  "description": "A select component built with Radix UI",
+  "docs": "https://ui.shadcn.com/docs/components/select"
+}

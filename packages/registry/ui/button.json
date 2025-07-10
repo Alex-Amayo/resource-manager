@@ -1,0 +1,13 @@
+{
+  "name": "button",
+  "type": "ui",
+  "files": ["ui/button.tsx"],
+  "dependencies": [
+    "@radix-ui/react-slot",
+    "class-variance-authority"
+  ],
+  "devDependencies": [],
+  "localDependencies": ["@/lib/utils"],
+  "description": "A customizable button component with variants and sizes",
+  "docs": "https://ui.shadcn.com/docs/components/button"
+}
