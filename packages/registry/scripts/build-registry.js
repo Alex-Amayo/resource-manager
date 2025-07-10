@@ -20,17 +20,19 @@ async function generateRegistry() {
     }
   };
 
-  // Read UI components
+  // Read UI components (if ui directory exists)
   const uiDir = path.join(registryPath, 'ui');
-  const uiFiles = await fs.readdir(uiDir);
-  
-  for (const file of uiFiles) {
-    if (file.endsWith('.json')) {
-      const componentName = file.replace('.json', '');
-      const metadataPath = path.join(uiDir, file);
-      const metadataContent = await fs.readFile(metadataPath, 'utf-8');
-      const metadata = JSON.parse(metadataContent);
-      registry.components[componentName] = metadata;
+  if (fsSync.existsSync(uiDir)) {
+    const uiFiles = await fs.readdir(uiDir);
+    
+    for (const file of uiFiles) {
+      if (file.endsWith('.json')) {
+        const componentName = file.replace('.json', '');
+        const metadataPath = path.join(uiDir, file);
+        const metadataContent = await fs.readFile(metadataPath, 'utf-8');
+        const metadata = JSON.parse(metadataContent);
+        registry.components[componentName] = metadata;
+      }
     }
   }
 
@@ -59,11 +61,14 @@ async function generateRegistry() {
     ],
     dependencies: ["lucide-react"],
     devDependencies: [],
+    registryDependencies: [
+      "utils",
+      "table",
+      "button",
+      "dropdown-menu"
+    ],
     localDependencies: [
-      "@/lib/utils",
-      "@/components/ui/table",
-      "@/components/ui/button",
-      "@/components/ui/dropdown-menu"
+      "resource-form-generator"
     ],
     description: "A complete resource manager component with table and actions",
     docs: ""
@@ -83,13 +88,13 @@ async function generateRegistry() {
     ],
     dependencies: ["react-hook-form", "@hookform/resolvers", "zod"],
     devDependencies: [],
-    localDependencies: [
-      "@/lib/utils",
-      "@/components/ui/dialog",
-      "@/components/ui/button",
-      "@/components/ui/input",
-      "@/components/ui/textarea",
-      "@/components/ui/select"
+    registryDependencies: [
+      "utils",
+      "dialog",
+      "button",
+      "input",
+      "textarea",
+      "select"
     ],
     description: "A dynamic form generator with validation for resource management",
     docs: ""

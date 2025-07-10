@@ -1,6 +1,21 @@
 {
   "version": "1.0.0",
   "components": {
+    "utils": {
+      "name": "utils",
+      "type": "lib",
+      "files": [
+        "lib/utils.ts"
+      ],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "devDependencies": [],
+      "localDependencies": [],
+      "description": "Utility functions for merging class names",
+      "docs": ""
+    },
     "resource-manager": {
       "name": "resource-manager",
       "type": "component",
@@ -17,9 +32,12 @@
       "devDependencies": [],
       "registryDependencies": [
         "utils",
-        "table", 
+        "table",
         "button",
         "dropdown-menu"
+      ],
+      "localDependencies": [
+        "resource-form-generator"
       ],
       "description": "A complete resource manager component with table and actions",
       "docs": ""
@@ -45,7 +63,7 @@
       "registryDependencies": [
         "utils",
         "dialog",
-        "button", 
+        "button",
         "input",
         "textarea",
         "select"
