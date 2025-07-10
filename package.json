@@ -7,32 +7,31 @@
     "dev": "pnpm --filter resource-manager-docs dev",
     "dev:docs": "pnpm --filter resource-manager-docs dev",
     "dev:cli": "pnpm --filter @resource-manager/cli dev",
-    
     "build": "pnpm --filter @resource-manager/cli build && pnpm --filter resource-manager-docs build",
-    "build:docs": "pnpm --filter resource-manager-docs build", 
+    "build:docs": "pnpm --filter resource-manager-docs build",
     "build:cli": "pnpm --filter @resource-manager/cli build",
     "build:registry": "pnpm --filter @resource-manager/registry build",
-    
     "test": "pnpm --filter @resource-manager/cli test",
     "test:run": "pnpm --filter @resource-manager/cli test:run",
     "test:integration": "pnpm --filter @resource-manager/cli test:integration",
-    
     "clean": "pnpm -r clean",
     "lint": "pnpm -r lint",
     "lint:fix": "pnpm -r lint:fix",
     "type-check": "pnpm -r type-check",
-    
     "storybook": "pnpm --filter resource-manager-docs storybook",
     "preview": "pnpm --filter resource-manager-docs preview",
-    
+    "reset:docs": "node scripts/reset-docs.js",
+    "reset:docs:quick": "node scripts/reset-docs.js --quick",
     "changeset": "changeset",
     "changeset:version": "changeset version",
     "changeset:publish": "pnpm build && changeset publish",
-    
     "release:cli": "pnpm build:cli && pnpm publish --filter @resource-manager/cli"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.12.4"
+  "packageManager": "pnpm@10.12.4",
+  "devDependencies": {
+    "chalk": "^5.4.1"
+  }
 }
