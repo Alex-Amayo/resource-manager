@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { Button } from "./components/ui/button.tsx";
 import './App.css';
-import { hello } from 'resource-manager-ui';
 
 function App() {
   const [count, setCount] = useState(0)
-  console.log(hello());
   return (
     <>
       <Button  />
