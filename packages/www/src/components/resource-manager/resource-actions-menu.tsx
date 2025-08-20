@@ -1,11 +1,11 @@
-import { Button } from "../ui/button.tsx";
+import { Button } from "@/components/ui/button";
 import { MoreHorizontal } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
-} from "../ui/dropdown-menu.tsx";
+} from "@/components/ui/dropdown-menu";
 
 interface ResourceActionsMenuProps {
   onEdit: () => void;

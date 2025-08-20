@@ -1,4 +1,4 @@
-import { Input } from '../../../ui/input.tsx';
+import { Input } from '@/components/ui/input';
 import type { ControllerRenderProps } from 'react-hook-form';
 
 interface InputFileProps {

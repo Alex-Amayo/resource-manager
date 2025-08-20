@@ -4,7 +4,7 @@ import React from "react";
 import type { ResourceData, ResourceManagerProps, ModalMode } from "./types.ts";
 import { ResourceTable } from "./resource-table.tsx";
 import { ResourceActionsMenu } from "./resource-actions-menu.tsx";
-import { Button } from "../ui/button.tsx";
+import { Button } from "@/components/ui/button";
 import { PlusCircle } from "lucide-react";
 import { ResourceFormModal } from "./resource-form-generator/resource-form-modal.tsx";
 

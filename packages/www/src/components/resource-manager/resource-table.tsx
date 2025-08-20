@@ -1,4 +1,4 @@
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "../ui/table.tsx";
+import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
 import type { ResourceTableProps } from "./types.ts";
 
 export function ResourceTable({
