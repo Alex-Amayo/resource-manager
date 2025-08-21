@@ -1,4 +1,4 @@
-import { Textarea } from '../../../ui/textarea.tsx';
+import { Textarea } from '@/components/ui/textarea';
 import type { ControllerRenderProps } from 'react-hook-form';
 
 interface InputTextareaProps {

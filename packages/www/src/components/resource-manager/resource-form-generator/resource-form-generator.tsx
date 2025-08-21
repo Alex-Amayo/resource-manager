@@ -2,7 +2,7 @@ import { useForm, Controller } from 'react-hook-form';
 import type { FieldValues } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Button } from '../../ui/button.tsx';
+import { Button } from '@/components/ui/button';
 import { InputText } from './inputs/input-text.tsx';
 import { InputTextarea } from './inputs/input-textarea.tsx';
 import { InputSelect } from './inputs/input-select.tsx';

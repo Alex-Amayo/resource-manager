@@ -1,4 +1,4 @@
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectItem, SelectLabel } from '../../../ui/select.tsx';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectItem, SelectLabel } from '@/components/ui/select';
 import type { ControllerRenderProps } from 'react-hook-form';
 
 interface Option {
