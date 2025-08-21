@@ -6,12 +6,13 @@
   "main": "index.js",
   "scripts": {
     "dev": "pnpm --parallel --filter \"./packages/*\" dev",
-    "build": "pnpm --filter resource-manager build",
-    "storybook": "pnpm --filter resource-manager storybook",
-    "storybook:build": "pnpm --filter resource-manager build-storybook",
-    "registry:build": "pnpm --filter resource-manager registry:build",
-    "registry:demo": "pnpm --filter registry-demo dev",
-    "registry:add": "pnpm dlx shadcn@latest add http://localhost:5173/r/resource-manager.json"
+    "build": "pnpm --filter ui build",
+    "storybook": "pnpm --filter ui storybook",
+    "storybook:build": "pnpm --filter ui build-storybook",
+    "registry:build": "pnpm --filter ui registry:build",
+    "registry:demo": "pnpm --filter demo dev",
+    "registry:add": "pnpm dlx shadcn@latest add http://localhost:5173/r/resource-manager.json",
+    "storybook:serve": "pnpm dlx serve packages/ui/storybook-static -p 6006"
   },
   "keywords": [],
   "author": "",

@@ -1,5 +1,5 @@
 {
-  "name": "resource-manager-docs",
+  "name": "@resource-manager/ui",
   "private": true,
   "version": "0.0.0",
   "type": "module",
