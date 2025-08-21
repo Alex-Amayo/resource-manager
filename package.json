@@ -8,7 +8,7 @@
     "dev": "pnpm --parallel --filter \"./packages/*\" dev",
     "build": "pnpm --filter resource-manager build",
     "storybook": "pnpm --filter resource-manager storybook",
-    "storybook:build": "pnpm --filter docs build-storybook",
+    "storybook:build": "pnpm --filter resource-manager build-storybook",
     "registry:build": "pnpm --filter resource-manager registry:build",
     "registry:demo": "pnpm --filter registry-demo dev",
     "registry:add": "pnpm dlx shadcn@latest add http://localhost:5173/r/resource-manager.json"
