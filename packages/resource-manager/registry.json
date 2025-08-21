@@ -1,0 +1,41 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "resource-manager",
+  "homepage": "https://resource-manager.com",
+  "items": [
+    {
+      "name": "resource-manager",
+      "type": "registry:block",
+      "title": "Resource Manager",
+      "description": "A tool for managing resources",
+      "registryDependencies": [
+        "button",
+        "dialog",
+        "dropdown-menu",
+        "input",
+        "select",
+        "table",
+        "textarea"
+      ],
+      "dependencies": [
+        "@hookform/resolvers",
+        "lucide-react",
+        "react-hook-form",
+        "zod"
+      ],
+      "files": [
+        { "name": "resource-manager", "path": "src/components/resource-manager/resource-manager.tsx", "type": "registry:component" },
+        { "name": "resource-table", "path": "src/components/resource-manager/resource-table.tsx", "type": "registry:component" },
+        { "name": "resource-actions-menu", "path": "src/components/resource-manager/resource-actions-menu.tsx", "type": "registry:component" },
+        { "name": "resource-form-modal", "path": "src/components/resource-manager/resource-form-generator/resource-form-modal.tsx", "type": "registry:component" },
+        { "name": "resource-form-generator", "path": "src/components/resource-manager/resource-form-generator/resource-form-generator.tsx", "type": "registry:component" },
+        { "name": "input-text", "path": "src/components/resource-manager/resource-form-generator/inputs/input-text.tsx", "type": "registry:component" },
+        { "name": "input-textarea", "path": "src/components/resource-manager/resource-form-generator/inputs/input-textarea.tsx", "type": "registry:component" },
+        { "name": "input-select", "path": "src/components/resource-manager/resource-form-generator/inputs/input-select.tsx", "type": "registry:component" },
+        { "name": "input-file", "path": "src/components/resource-manager/resource-form-generator/inputs/input-file.tsx", "type": "registry:component" },
+        { "name": "types", "path": "src/components/resource-manager/types.ts", "type": "registry:lib" },
+        { "name": "form-types", "path": "src/components/resource-manager/resource-form-generator/form-types.ts", "type": "registry:lib" }
+      ]
+    }
+  ]
+}

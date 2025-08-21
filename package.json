@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bootstrap": "pnpm install",
-    "docs": "pnpm --filter resource-manager-docs run dev",
-    "storybook": "pnpm --filter resource-manager-docs storybook"
+    "bootstrap": "pnpm install"
   },
   "keywords": [],
   "author": "",
