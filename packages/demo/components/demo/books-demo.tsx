@@ -44,7 +44,7 @@ function Demo() {
   `;
 
     return (
-        <div className="container px-4 py-8">
+        <div>
             <LiveProvider code={code} scope={{ ResourceManager }}>
                 <div className="grid  gap-4">
                     <div className="p-4">
