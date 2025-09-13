@@ -35,9 +35,9 @@ function Demo() {
         fields={fields}
         title="Simple Books Demo"
         resourceName="Book"
-        create={(data) => console.log('Create:', data)}
-        update={(id, data) => console.log('Update:', id, data)}
-        delete={(id) => console.log('Delete:', id)}
+        onCreate={(data) => console.log('Create:', data)}
+        onUpdate={(id, data) => console.log('Update:', id, data)}
+        onDelete={(ids) => console.log('Delete:', ids)}
       />
     );
 }

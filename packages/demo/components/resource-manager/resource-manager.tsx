@@ -1,12 +1,10 @@
 'use client';
 
-import React from "react";
-import type { ResourceData, ResourceManagerProps, ModalMode } from "./types.ts";
-import { ResourceTable } from "./resource-table.tsx";
-import { ResourceActionsMenu } from "./resource-actions-menu.tsx";
-import { Button } from "@/components/ui/button";
-import { PlusCircle } from "lucide-react";
-import { ResourceFormModal } from "./resource-form-generator/resource-form-modal.tsx";
+import type { ResourceManagerProps } from "./types";
+import { ResourceTable } from "./resource-table";
+import { ResourceManagerProvider } from "./resource-manager-context";
+import { ResourceFormModalContainer } from "./resource-form-modal-container";
+import { ActionButtons } from "./action-buttons";
 
 /**
  * Generic ResourceManager component for displaying and managing resources.
@@ -21,100 +19,33 @@ import { ResourceFormModal } from "./resource-form-generator/resource-form-modal
 export function ResourceManager({
   data,
   fields,
-  create,
-  update,
-  delete: deleteResource,
+  onCreate,
+  onUpdate,
   resourceName = "Resource",
   title,
+  onSelectionChange,
+  onDelete,
 }: ResourceManagerProps) {
-  // Modal/form state
-  const [modalOpen, setModalOpen] = React.useState(false);
-  const [editIdx, setEditIdx] = React.useState<number | null>(null);
-  const [mode, setMode] = React.useState<ModalMode>("add");
-  const [formValues, setFormValues] = React.useState<Partial<ResourceData>>({});
-
-  // Handlers for modal actions
-  const handleOpenCreate = () => {
-    setEditIdx(null);
-    setFormValues({});
-    setMode("add");
-    setModalOpen(true);
-  };
-
-  const handleOpenEdit = (idx: number) => {
-    setEditIdx(idx);
-    setFormValues(data[idx] ?? {});
-    setMode("edit");
-    setModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setModalOpen(false);
-    setEditIdx(null);
-    setFormValues({});
-  };
-
-  const handleSubmitForm = (values: Partial<ResourceData>) => {
-    if (mode === "add") {
-      create(values);
-    } else if (mode === "edit" && editIdx !== null) {
-      const id = data[editIdx]?.id;
-      if (id) {
-        update(String(id), values);
-      }
-    }
-    handleCloseModal();
-  };
-
-  const handleDelete = (idx: number) => {
-    const id = data[idx]?.id;
-    if (id) {
-      deleteResource(String(id));
-    }
-  };
-
-  // Internal renderActionsMenu function
-  const renderActionsMenu = (_rowIdx: number, onEdit: () => void, onDelete: () => void) => (
-    <ResourceActionsMenu onEdit={onEdit} onDelete={onDelete} />
-  );
-
-  const formComponent = modalOpen && (
-    <ResourceFormModal
-      isOpen={modalOpen}
-      onOpenChange={setModalOpen}
-      initialValues={formValues}
-      onSubmit={handleSubmitForm}
-      onCancel={handleCloseModal}
-      mode={mode}
-      resourceName={resourceName}
-      fields={fields}
-    />
-  );
-
   return (
-    <div className="container flex flex-col gap-4">
-      {/* Header with title */}
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">{title}</h1>
+    <ResourceManagerProvider
+      data={data}
+      create={onCreate}
+      update={onUpdate}
+      resourceName={resourceName}
+      onSelectionChange={onSelectionChange}
+      onDelete={onDelete}
+    >
+      <div className="container flex flex-col gap-4">
+        {/* Header with title */}
+        <div className="flex justify-between items-center px-10">
+          <h1 className="text-2xl font-bold">{title}</h1>
+        </div>
+        <ResourceTable
+          fields={fields}
+        />
+        <ActionButtons />
+        <ResourceFormModalContainer fields={fields} />
       </div>
-      <ResourceTable
-        data={data}
-        fields={fields}
-        onEdit={handleOpenEdit}
-        onDelete={handleDelete}
-        renderActionsMenu={renderActionsMenu}
-        resourceName={resourceName}
-      />
-      {/* Create button */}
-      <div className="flex justify-end">
-        <Button
-        onClick={handleOpenCreate}
-        >
-          Add {resourceName}
-          <PlusCircle />
-        </Button>
-      </div>
-      {formComponent}
-    </div>
+    </ResourceManagerProvider>
   );
 }

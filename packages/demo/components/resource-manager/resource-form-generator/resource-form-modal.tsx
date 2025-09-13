@@ -21,7 +21,7 @@ export function ResourceFormModal({
 }: ResourceFormModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-white rounded shadow-lg p-6 min-w-[350px] max-w-[95vw]">
+      <DialogContent className="bg-card rounded shadow-lg p-6 min-w-[350px] max-w-[95vw]">
         <DialogHeader>
           <DialogTitle>
             {mode === "add" ? "Create New" : "Edit"} {resourceName}
