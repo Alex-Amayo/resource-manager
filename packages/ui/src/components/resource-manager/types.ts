@@ -2,7 +2,7 @@ import type {ReactNode} from 'react';
 
 // General resource manager types
 export interface ResourceData {
-  id?: string | number;
+  id: string | number;
   [key: string]: any;
 }
 
@@ -26,10 +26,11 @@ export interface ResourceManagerProps {
   resourceName: string;
   data: ResourceData[];
   fields: FieldDef[];
-  create: (values: Partial<ResourceData>) => void;
-  update: (id: string , values: Partial<ResourceData>) => void;
-  delete: (id: string ) => void;
+  onCreate: (values: Partial<ResourceData>) => void;
+  onUpdate: (id: string , values: Partial<ResourceData>) => void;
+  onDelete?: (ids: Array<string | number>) => void;
   defaultValues?: Partial<ResourceData>;
+  onSelectionChange?: (selectedIds: Array<string | number>) => void;
 }
 
 export interface ResourceTableProps {

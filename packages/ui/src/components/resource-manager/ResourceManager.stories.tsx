@@ -29,14 +29,14 @@ const fields: FieldDef[] = [
         key: "file",
         label: "File",
         inputType: "file",
-        renderCell: (value) => (value ? value.name || value : ""),
+        renderCell: (value) => (value?.url || value || ""),
         fieldType: "file",
     },
 ];
 
 const data = [
-    { id: 1, name: "Alice", email: "alice@example.com", file: undefined },
-    { id: 2, name: "Bob", email: "bob@example.com", file: undefined },
+    { id: 1, name: "Alice", email: "alice@example.com", file: "https://example.com/files/alice-doc.pdf" },
+    { id: 2, name: "Bob", email: "bob@example.com", file: "https://example.com/files/bob-report.pdf" },
 ];
 
 const meta: Meta<typeof ResourceManager> = {
@@ -72,13 +72,14 @@ Basic.args = {
     resourceName: "Contact",
     data: data,
     fields: fields,
-    create: (values) => {
+    onCreate: (values) => {
         if (values.file) {
             console.log("create file:", values.file.name || values.file);
         } else {
             console.log("create", values);
         }
     },
-    update: (id, values) => console.log("update", id, values),
-    delete: (id) => console.log("delete", id),
+    onUpdate: (id, values) => console.log("update", id, values),
+    onDelete: (id) => console.log("delete", id),
+    onSelectionChange: (selectedIds: Array<string | number>) => console.log("Selected IDs:", selectedIds),
 };
