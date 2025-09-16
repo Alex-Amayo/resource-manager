@@ -11,7 +11,7 @@
     "storybook:build": "pnpm --filter ui build-storybook",
     "registry:build": "pnpm --filter ui registry:build",
     "registry:demo": "pnpm --filter demo dev",
-    "registry:add": "pnpm --filter demo dlx shadcn@latest add http://localhost:5173/r/resource-manager.json",
+    "registry:add": "cd packages/demo && pnpm dlx shadcn@latest add http://localhost:5173/r/resource-manager.json --overwrite",
     "storybook:serve": "pnpm dlx serve packages/ui/storybook-static -p 6006"
   },
   "keywords": [],
