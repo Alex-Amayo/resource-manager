@@ -7,8 +7,8 @@ export function BooksDemo() {
     const code = `
 function Demo() {
     const data = [
-        { id: '1', title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
-        { id: '2', title: 'Clean Code', author: 'Robert C. Martin' }
+        { id: '1', title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', year: 1925 },
+        { id: '2', title: 'Clean Code', author: 'Robert C. Martin', year: 2008 }
     ];
     const fields = [
       {
@@ -24,6 +24,14 @@ function Demo() {
         label: 'Author',
         inputType: 'text',
         fieldType: 'string',
+        required: true,
+        renderCell: (value) => value,
+      },
+      {
+        key: 'year',
+        label: 'Year Released',
+        inputType: 'number',
+        fieldType: 'number',
         required: true,
         renderCell: (value) => value,
       }
@@ -46,11 +54,9 @@ function Demo() {
     return (
         <div>
             <LiveProvider code={code} scope={{ ResourceManager }}>
-                <div className="grid  gap-4">
-                    <div className="p-4">
-                        <LivePreview />
-                    </div>
-                    <div className="p-4 rounded-lg bg-gray-100">
+                <div className='flex flex-col gap-10'>
+                    <LivePreview />
+                    <div>
                         <LiveEditor />
                         <LiveError />
                     </div>

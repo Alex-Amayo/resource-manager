@@ -1,5 +1,5 @@
 import { BooksDemo } from '../components/demo/books-demo';
-import { Github } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
 
 export default function Home() {
   return (
@@ -7,7 +7,8 @@ export default function Home() {
       <nav className='fixed w-full inset-0 backdrop-blur-sm bg-white/30 z-10 h-20 border-b-1'>
         <div className="container mx-auto h-full">
           <div className="w-full flex justify-between items-center px-4 h-full">
-            <a href="/" className="text-xl font-semibold text-black hover:text-gray-700 transition-colors">
+            <a href="/" className="text-xl font-semibold text-black hover:text-gray-700 transition-colors flex items-center gap-2">
+              <img src="/table.png" alt="Table" className="w-10 h-10" />
               Resource Manager
             </a>
             <a 
@@ -16,7 +17,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="flex items-center hover:text-gray-600 transition-colors"
             >
-              <Github className="w-6 h-6" />
+              <FaGithub className="w-10 h-10 p-1" />
             </a>
           </div>
         </div>
@@ -25,7 +26,7 @@ export default function Home() {
 
       <div className="container mx-auto px-4 pt-20">
         <div className="py-12">
-          <div className="max-w-3xl mx-auto text-center flex flex-col gap-8">
+          <div className="max-w-3xl mx-auto text-center flex flex-col gap-10">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
               Resource Manager
             </h1>
