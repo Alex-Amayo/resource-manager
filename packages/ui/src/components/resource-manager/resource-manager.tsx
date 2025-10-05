@@ -1,6 +1,6 @@
 'use client';
 
-import type { ResourceManagerProps } from "./types";
+import type { ResourceManagerProps } from "./resource-manager-types.ts";
 import { ResourceTable } from "./resource-table";
 import { ResourceManagerProvider } from "./resource-manager-context";
 import { ResourceFormModalContainer } from "./resource-form-modal-container";
@@ -15,7 +15,7 @@ export function ResourceManager({
   resourceName = "Resource",
   title,
   handleSelectionChange,
-  onDelete,
+  handleDelete,
 }: ResourceManagerProps) {
   return (
     <ResourceManagerProvider
@@ -24,7 +24,7 @@ export function ResourceManager({
       handleUpdate={handleUpdate}
       resourceName={resourceName}
       handleSelectionChange={handleSelectionChange}
-      handleDelete={onDelete}
+      handleDelete={handleDelete}
     >
       <div className="container flex flex-col gap-4">
         {/* Header with title */}

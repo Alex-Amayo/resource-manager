@@ -1,9 +1,10 @@
 import { Input } from '@/components/ui/input';
 import type { ControllerRenderProps } from 'react-hook-form';
+import type { Item } from '../../resource-manager-types.ts';
 
 interface InputFileProps {
   id: string;
-  field: ControllerRenderProps<any, string>;
+  field: ControllerRenderProps<Item, string>;
   onFileUpload?: (file: File) => Promise<string>;
 }
 

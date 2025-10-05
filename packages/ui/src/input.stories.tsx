@@ -32,7 +32,6 @@ export const Textarea: Story = {
 export const Select: Story = {
   render: () => (
     <InputSelect
-      id="select"
       label="Select Option"
       field={{ ...fakeField, value: 'option1' }}
       options={[
@@ -51,9 +50,8 @@ export const File: Story = {
         ...fakeField,
         value: undefined,
         onChange: file => {
-          // For Storybook, just log the file name
+          // For Storybook, log the file name
           if (file) {
-            // eslint-disable-next-line no-console
             console.log('Selected file:', file.name);
           }
         },

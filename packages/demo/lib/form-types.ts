@@ -1,5 +1,5 @@
-import type { FieldDef } from "../types.ts";
-import type { ResourceData } from "../types.ts";
+import type { FieldDef } from "../resource-manager-types.ts";
+import type { ResourceData } from "../resource-manager-types.ts";
 
 export type ModalMode = "add" | "edit";
 

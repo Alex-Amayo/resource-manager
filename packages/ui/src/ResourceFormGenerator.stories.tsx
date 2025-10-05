@@ -1,7 +1,11 @@
 // ResourceFormGenerator.stories.tsx
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { ResourceFormGenerator } from './components/resource-manager/resource-form-generator/resource-form-generator.tsx';
-import type { fieldConfigs } from './components/resource-manager/types.ts';
+import type {Meta, StoryObj} from '@storybook/react-vite';
+import {ResourceFormGenerator} from './components/resource-manager/resource-form-generator/resource-form-generator.tsx';
+import type {fieldConfigs} from '@/components/resource-manager';
+import {z} from 'zod';
+
+// Zod schema for the 'name' field
+const nameFieldSchema = z.string().min(3, 'Name must be at least 3 characters');
 
 // Sample fields configuration
 const sampleFields: fieldConfigs[] = [
@@ -10,44 +14,36 @@ const sampleFields: fieldConfigs[] = [
         label: 'Name',
         fieldType: 'string',
         inputType: 'text',
-        required: true,
-        renderCell: (value) => value,
+        zodSchema: nameFieldSchema,
     },
     {
         key: 'description',
         label: 'Description',
         fieldType: 'string',
         inputType: 'textarea',
-        required: true,
-        renderCell: (value) => value,
     },
     {
         key: 'category',
         label: 'Category',
         fieldType: 'string',
         inputType: 'select',
-        required: true,
         options: [
-            { value: 'technology', label: 'Technology' },
-            { value: 'business', label: 'Business' },
-            { value: 'education', label: 'Education' },
+            {value: 'technology', label: 'Technology'},
+            {value: 'business', label: 'Business'},
+            {value: 'education', label: 'Education'},
         ],
-        renderCell: (value) => value,
     },
     {
         key: 'notes',
         label: 'Additional Notes',
         fieldType: 'string',
         inputType: 'textarea',
-        required: false,
-        renderCell: (value) => value,
     },
     {
         key: 'attachment',
         label: 'Attachment',
         fieldType: 'file',
         inputType: 'file',
-        required: false,
         renderCell: (value) => value instanceof File ? value.name : (value ? String(value) : ''),
     },
 ];
@@ -89,14 +85,6 @@ export const WithInitialValues: Story = {
     },
 };
 
-// Story with required fields only
-export const RequiredFieldsOnly: Story = {
-    args: {
-        ...Default.args,
-        fields: sampleFields.filter(field => field.required),
-    },
-};
-
 // Story showing validation errors
 export const WithValidationErrors: Story = {
     args: {
@@ -107,7 +95,7 @@ export const WithValidationErrors: Story = {
             category: '', // This will trigger validation error
         },
     },
-    play: async ({ canvasElement }) => {
+    play: async () => {
         // You could add interactions here to demonstrate validation
         // using the @storybook/testing-library
     },

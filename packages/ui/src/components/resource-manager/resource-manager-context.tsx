@@ -1,5 +1,5 @@
 import React from 'react';
-import type {Item, ResourceManagerProps, ModalMode} from "./types";
+import type {Item, ResourceManagerProps, ModalMode} from "./resource-manager-types.ts";
 
 interface ResourceManagerContextType {
     data: Item[];

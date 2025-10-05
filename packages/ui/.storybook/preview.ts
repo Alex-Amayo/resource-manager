@@ -1,4 +1,5 @@
-import type { Preview } from '@storybook/react-vite'
+import type { Preview } from "@storybook/react";
+
 import "../src/index.css";
 
 const preview: Preview = {
@@ -15,6 +16,11 @@ const preview: Preview = {
         sortProps: false,
         showDefaultProps: false,
         filterProps: ['defaultValues'],
+      },
+    },
+    options: {
+      storySort: {
+        order: ['Introduction', 'Components', 'ResourceFormGenerator'],
       },
     },
 

@@ -1,35 +1,41 @@
-import { ResourceManager } from "./components/resource-manager/resource-manager.tsx";
-import type { fieldConfigs } from "./components/resource-manager/types.ts";
+import { ResourceManager } from "@/components/resource-manager";
+import type { fieldConfigs } from "@/components/resource-manager";
 import type { StoryFn, Meta } from "@storybook/react-vite";
-
+import { z } from "zod";
 // No need to extend FieldTypes for this simple example, use FieldDef<Contact>[]
 const fields: fieldConfigs[] = [
     {
         key: "id",
         label: "ID",
         inputType: "text",
-        renderCell: (value) => value,
+        renderCell: (value) => String(value),
         fieldType: "string",
+        zodSchema: z.number().min(1, "required"),
     },
     {
         key: "name",
         label: "Name",
         inputType: "text",
-        renderCell: (value) => value,
+        renderCell: (value) => String(value),
         fieldType: "string",
     },
     {
         key: "email",
         label: "Email",
         inputType: "text",
-        renderCell: (value) => value,
+        renderCell: (value) => String(value),
         fieldType: "string",
     },
     {
         key: "file",
         label: "File",
         inputType: "file",
-        renderCell: (value) => (value?.url || value || ""),
+        renderCell: (value) => {
+            if (typeof value === "object" && value !== null && "url" in value) {
+                return String((value as { url?: string }).url || "");
+            }
+            return String(value || "");
+        },
         fieldType: "file",
         onFileUpload: async (file) => {
             console.log('Uploading file:', file);
@@ -47,7 +53,7 @@ const fields: fieldConfigs[] = [
             { label: "User", value: "user" },
             { label: "Guest", value: "guest" },
         ],
-        renderCell: (value) => value,
+        renderCell: (value) => String(value),
     },
 ];
 
@@ -81,23 +87,23 @@ const meta: Meta<typeof ResourceManager> = {
 export default meta;
 
 type Story = StoryFn<typeof ResourceManager>;
-const Template: Story = (args) => <ResourceManager {...args as any} />;
-
-export const Basic: Story = Template.bind({});
+export const Basic: Story = (args) => (
+    <ResourceManager {...args} />
+);
 Basic.args = {
     title: "Contact Manager",
     resourceName: "Contact",
     data: data,
     fields: fields,
-    handleCreate: (values: any) => {
+    handleCreate: (values: Partial<import("@/components/resource-manager/resource-manager-types").Item>) => {
         console.log("create (from story)", values);
         if (values.file) {
-            console.log("create file:", values.file.name || values.file);
+            console.log("create file:", (values.file as any).name || values.file);
         } else {
             console.log("create", values);
         }
     },
-    handleUpdate: (id, values) => console.log("update", id, values),
-    onDelete: (id) => console.log("delete", id),
+    handleUpdate: (id: string | number, values: Partial<import("@/components/resource-manager/resource-manager-types").Item>) => console.log("update", id, values),
+    handleDelete: (ids: Array<string | number>) => console.log("delete", ids),
     handleSelectionChange: (selectedIds: Array<string | number>) => console.log("Selected IDs:", selectedIds),
 };

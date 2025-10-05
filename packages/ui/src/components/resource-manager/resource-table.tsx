@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { Checkbox } from "../ui/checkbox";
-import type { fieldConfigs } from './types';
+import type { fieldConfigs } from './resource-manager-types.ts';
 import { useResourceManager } from './resource-manager-context';
 
 export interface ResourceTableProps {
