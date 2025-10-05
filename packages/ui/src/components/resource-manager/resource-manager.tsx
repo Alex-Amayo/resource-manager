@@ -29,8 +29,8 @@ export function ResourceManager({
   return (
     <ResourceManagerProvider
       data={data}
-      create={onCreate}
-      update={onUpdate}
+      onCreate={onCreate}
+      onUpdate={onUpdate}
       resourceName={resourceName}
       onSelectionChange={onSelectionChange}
       onDelete={onDelete}

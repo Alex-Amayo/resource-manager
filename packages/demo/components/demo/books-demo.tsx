@@ -34,6 +34,14 @@ function Demo() {
         fieldType: 'number',
         required: true,
         renderCell: (value) => value,
+      },
+      {
+        key: 'cover',
+        label: 'Book Cover',
+        inputType: 'file',
+        fieldType: 'file',
+        required: false,
+        renderCell: (value) => value instanceof File ? value.name : (value ? String(value) : ''),
       }
     ];
 

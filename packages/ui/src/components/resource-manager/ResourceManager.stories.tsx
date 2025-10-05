@@ -31,6 +31,11 @@ const fields: FieldDef[] = [
         inputType: "file",
         renderCell: (value) => (value?.url || value || ""),
         fieldType: "file",
+        onFileUpload: async (file) => {
+            console.log('Uploading file:', file);
+            // Simulate upload and return a dummy URL
+            return Promise.resolve('https://example.com/files/' + file.name);
+        },
     },
 ];
 
@@ -72,7 +77,8 @@ Basic.args = {
     resourceName: "Contact",
     data: data,
     fields: fields,
-    onCreate: (values) => {
+    onCreate: (values: any) => {
+        console.log("create (from story)", values);
         if (values.file) {
             console.log("create file:", values.file.name || values.file);
         } else {

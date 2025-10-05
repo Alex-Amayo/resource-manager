@@ -23,12 +23,12 @@ const ResourceManagerContext = React.createContext<ResourceManagerContextType | 
 export function ResourceManagerProvider({
   children,
   data,
-  onCreate: create,
-  onUpdate: update,
+  onCreate,
+  onUpdate,
   onDelete,
   resourceName = "Resource",
   onSelectionChange,
-}: Pick<ResourceManagerProps, 'data' | 'create' | 'update' | 'resourceName' | 'onSelectionChange'> & {
+}: Pick<ResourceManagerProps, 'data' | 'onCreate' | 'onUpdate' | 'resourceName' | 'onSelectionChange'> & {
   children: React.ReactNode;
   onDelete?: (ids: Array<string | number>) => void;
 }) {
@@ -67,15 +67,15 @@ export function ResourceManagerProvider({
 
   const handleSubmitForm = React.useCallback((values: Partial<ResourceData>) => {
     if (mode === "add") {
-      create(values);
+      onCreate(values);
     } else if (mode === "edit" && editIdx !== null) {
       const id = data[editIdx]?.id;
       if (id) {
-        update(String(id), values);
+        onUpdate(String(id), values);
       }
     }
     handleCloseModal();
-  }, [mode, create, update, editIdx, data, handleCloseModal]);
+  }, [mode, onCreate, onUpdate, editIdx, data, handleCloseModal]);
 
   React.useEffect(() => {
     onSelectionChange?.(selectedIds);

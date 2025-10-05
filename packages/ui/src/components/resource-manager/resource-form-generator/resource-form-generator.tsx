@@ -101,7 +101,7 @@ export function ResourceFormGenerator({
                     );
                   case 'file':
                     return (
-                      <InputFile id={fieldKey} field={formField} />
+                      <InputFile id={fieldKey} field={formField} onFileUpload={field.onFileUpload} />
                     );
                   default:
                     return <InputText id={fieldKey} field={formField} />;

@@ -4,17 +4,23 @@ import type { ControllerRenderProps } from 'react-hook-form';
 interface InputFileProps {
   id: string;
   field: ControllerRenderProps<any, string>;
+  onFileUpload?: (file: File) => Promise<string>;
 }
 
-export function InputFile({ id, field }: InputFileProps) {
+export function InputFile({ id, field, onFileUpload }: InputFileProps) {
   return (
     <Input
       id={id}
       type="file"
       className="w-full"
-      onChange={e => {
+      onChange={async e => {
         const file = e.target.files?.[0] || null;
-        field.onChange(file);
+        if (file && onFileUpload) {
+          const url = await onFileUpload(file);
+          field.onChange(url);
+        } else {
+          field.onChange(file);
+        }
       }}
     />
   );

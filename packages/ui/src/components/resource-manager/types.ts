@@ -17,6 +17,8 @@ export interface FieldDef {
   renderCell: (value: any, row?: any) => ReactNode;
   options?: { label: string; value: string }[];
   required?: boolean;
+  // Optional file upload handler for file input fields
+  onFileUpload?: (file: File) => Promise<string>;
 }
 
 export type ModalMode = "add" | "edit";
