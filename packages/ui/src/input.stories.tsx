@@ -1,9 +1,9 @@
 // input.stories.tsx
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { InputText } from './input-text.tsx';
-import { InputTextarea } from './input-textarea.tsx';
-import { InputSelect } from './input-select.tsx';
-import { InputFile } from './input-file.tsx';
+import { InputText } from './components/resource-manager/resource-form-generator/inputs/input-text.tsx';
+import { InputTextarea } from './components/resource-manager/resource-form-generator/inputs/input-textarea.tsx';
+import { InputSelect } from './components/resource-manager/resource-form-generator/inputs/input-select.tsx';
+import { InputFile } from './components/resource-manager/resource-form-generator/inputs/input-file.tsx';
 
 const meta: Meta = {
   title: 'Forms/Inputs',

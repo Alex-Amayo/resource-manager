@@ -8,7 +8,7 @@ import { InputTextarea } from './inputs/input-textarea.tsx';
 import { InputSelect } from './inputs/input-select.tsx';
 import { InputFile } from './inputs/input-file.tsx';
 import type { ResourceFormGeneratorProps } from './form-types.ts';
-import type { ResourceData } from '../types.ts';
+import type { Item } from '../types.ts';
 
 
 /**
@@ -65,7 +65,7 @@ export function ResourceFormGenerator({
 
   // Form submission handler
   const onFormSubmit = (data: FieldValues) => {
-    onSubmit(data as Partial<ResourceData>);
+    onSubmit(data as Partial<Item>);
   };
 
   return (

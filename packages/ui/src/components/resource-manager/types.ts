@@ -1,20 +1,19 @@
 import type {ReactNode} from 'react';
 
-// General resource manager types
-export interface ResourceData {
+export interface Item {
   id: string | number;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export type InputType = 'text' | 'number' | 'tags' | 'select' | 'textarea' | 'file';
 
-// Only the minimal types for resource manager and table
-export interface FieldDef {
+
+export interface fieldConfigs {
   key: string;
   label: string;
   inputType: InputType;
   fieldType: string;
-  renderCell: (value: any, row?: any) => ReactNode;
+  renderCell: (value: unknown, row?: Item) => ReactNode;
   options?: { label: string; value: string }[];
   required?: boolean;
   // Optional file upload handler for file input fields
@@ -26,20 +25,11 @@ export type ModalMode = "add" | "edit";
 export interface ResourceManagerProps {
   title: string;
   resourceName: string;
-  data: ResourceData[];
-  fields: FieldDef[];
-  onCreate: (values: Partial<ResourceData>) => void;
-  onUpdate: (id: string , values: Partial<ResourceData>) => void;
+  data: Item[];
+  fields: fieldConfigs[];
+  handleCreate: (values: Partial<Item>) => void;
+  handleUpdate: (id: string , values: Partial<Item>) => void;
   onDelete?: (ids: Array<string | number>) => void;
-  defaultValues?: Partial<ResourceData>;
-  onSelectionChange?: (selectedIds: Array<string | number>) => void;
-}
-
-export interface ResourceTableProps {
-  data: ResourceData[];
-  fields: FieldDef[];
-  onEdit: (index: number) => void;
-  onDelete: (index: number) => void;
-  renderActionsMenu: (rowIdx: number, onEdit: () => void, onDelete: () => void) => ReactNode;
-  resourceName: string;
+  initialValues?: Partial<Item>;
+  handleSelectionChange?: (selectedIds: Array<string | number>) => void;
 }

@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { Checkbox } from "../ui/checkbox";
-import type { FieldDef } from './types';
+import type { fieldConfigs } from './types';
 import { useResourceManager } from './resource-manager-context';
 
 export interface ResourceTableProps {
-  fields: FieldDef[];
+  fields: fieldConfigs[];
   minColumnWidth?: number;
 }
 

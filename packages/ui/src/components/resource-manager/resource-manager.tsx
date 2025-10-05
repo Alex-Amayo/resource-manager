@@ -6,34 +6,25 @@ import { ResourceManagerProvider } from "./resource-manager-context";
 import { ResourceFormModalContainer } from "./resource-form-modal-container";
 import { ActionButtons } from "./action-buttons";
 
-/**
- * Generic ResourceManager component for displaying and managing resources.
- *
- * - Handles modal state management 
- * - Provides actions for creating, editing, and deleting resources
- * - Includes internal rendering of forms and action menus
- *
- * @template T Resource type
- * @param props ResourceManagerProps<T>
- */
+
 export function ResourceManager({
   data,
   fields,
-  onCreate,
-  onUpdate,
+  handleCreate,
+  handleUpdate,
   resourceName = "Resource",
   title,
-  onSelectionChange,
+  handleSelectionChange,
   onDelete,
 }: ResourceManagerProps) {
   return (
     <ResourceManagerProvider
       data={data}
-      onCreate={onCreate}
-      onUpdate={onUpdate}
+      handleCreate={handleCreate}
+      handleUpdate={handleUpdate}
       resourceName={resourceName}
-      onSelectionChange={onSelectionChange}
-      onDelete={onDelete}
+      handleSelectionChange={handleSelectionChange}
+      handleDelete={onDelete}
     >
       <div className="container flex flex-col gap-4">
         {/* Header with title */}

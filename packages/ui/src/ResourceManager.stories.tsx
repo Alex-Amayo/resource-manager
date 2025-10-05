@@ -1,9 +1,9 @@
-import { ResourceManager } from "./resource-manager.tsx";
-import type { FieldDef } from "./types.ts";
+import { ResourceManager } from "./components/resource-manager/resource-manager.tsx";
+import type { fieldConfigs } from "./components/resource-manager/types.ts";
 import type { StoryFn, Meta } from "@storybook/react-vite";
 
 // No need to extend FieldTypes for this simple example, use FieldDef<Contact>[]
-const fields: FieldDef[] = [
+const fields: fieldConfigs[] = [
     {
         key: "id",
         label: "ID",
@@ -37,11 +37,23 @@ const fields: FieldDef[] = [
             return Promise.resolve('https://example.com/files/' + file.name);
         },
     },
+    {
+        key: "role",
+        label: "Role",
+        inputType: "select",
+        fieldType: "string",
+        options: [
+            { label: "Admin", value: "admin" },
+            { label: "User", value: "user" },
+            { label: "Guest", value: "guest" },
+        ],
+        renderCell: (value) => value,
+    },
 ];
 
 const data = [
-    { id: 1, name: "Alice", email: "alice@example.com", file: "https://example.com/files/alice-doc.pdf" },
-    { id: 2, name: "Bob", email: "bob@example.com", file: "https://example.com/files/bob-report.pdf" },
+    { id: 1, name: "Alice", email: "alice@example.com", file: "https://example.com/files/alice-doc.pdf", role: "admin" },
+    { id: 2, name: "Bob", email: "bob@example.com", file: "https://example.com/files/bob-report.pdf", role: "user" },
 ];
 
 const meta: Meta<typeof ResourceManager> = {
@@ -59,7 +71,7 @@ const meta: Meta<typeof ResourceManager> = {
         },
     },
     argTypes: {
-        defaultValues: {
+        initialValues: {
             control: false,           // no control widget
             table: {disable: true}, // no column in the table
         },
@@ -77,7 +89,7 @@ Basic.args = {
     resourceName: "Contact",
     data: data,
     fields: fields,
-    onCreate: (values: any) => {
+    handleCreate: (values: any) => {
         console.log("create (from story)", values);
         if (values.file) {
             console.log("create file:", values.file.name || values.file);
@@ -85,7 +97,7 @@ Basic.args = {
             console.log("create", values);
         }
     },
-    onUpdate: (id, values) => console.log("update", id, values),
+    handleUpdate: (id, values) => console.log("update", id, values),
     onDelete: (id) => console.log("delete", id),
-    onSelectionChange: (selectedIds: Array<string | number>) => console.log("Selected IDs:", selectedIds),
+    handleSelectionChange: (selectedIds: Array<string | number>) => console.log("Selected IDs:", selectedIds),
 };
