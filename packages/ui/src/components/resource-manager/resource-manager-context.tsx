@@ -18,7 +18,7 @@ interface ResourceManagerContextType {
     handleSubmitForm: (values: Partial<Item>) => void;
 }
 
-const ResourceManagerContext = React.createContext<ResourceManagerContextType | undefined>(undefined);
+export const ResourceManagerContext = React.createContext<ResourceManagerContextType | undefined>(undefined);
 
 export function ResourceManagerProvider({
                                             children,

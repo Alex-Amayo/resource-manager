@@ -1,8 +1,6 @@
 import { ResourceManager } from "@/components/resource-manager";
 import type { fieldConfigs } from "@/components/resource-manager";
 import type { StoryFn, Meta } from "@storybook/react-vite";
-import { z } from "zod";
-// No need to extend FieldTypes for this simple example, use FieldDef<Contact>[]
 const fields: fieldConfigs[] = [
     {
         key: "id",
@@ -10,7 +8,7 @@ const fields: fieldConfigs[] = [
         inputType: "text",
         renderCell: (value) => String(value),
         fieldType: "string",
-        zodSchema: z.number().min(1, "required"),
+        // zodSchema excluded for story
     },
     {
         key: "name",
@@ -25,6 +23,18 @@ const fields: fieldConfigs[] = [
         inputType: "text",
         renderCell: (value) => String(value),
         fieldType: "string",
+    },
+    {
+        key: "role",
+        label: "Role",
+        inputType: "select",
+        fieldType: "string",
+        options: [
+            { label: "Admin", value: "admin" },
+            { label: "User", value: "user" },
+            { label: "Guest", value: "guest" },
+        ],
+        renderCell: (value) => String(value),
     },
     {
         key: "file",
@@ -43,23 +53,19 @@ const fields: fieldConfigs[] = [
             return Promise.resolve('https://example.com/files/' + file.name);
         },
     },
-    {
-        key: "role",
-        label: "Role",
-        inputType: "select",
-        fieldType: "string",
-        options: [
-            { label: "Admin", value: "admin" },
-            { label: "User", value: "user" },
-            { label: "Guest", value: "guest" },
-        ],
-        renderCell: (value) => String(value),
-    },
 ];
 
 const data = [
     { id: 1, name: "Alice", email: "alice@example.com", file: "https://example.com/files/alice-doc.pdf", role: "admin" },
     { id: 2, name: "Bob", email: "bob@example.com", file: "https://example.com/files/bob-report.pdf", role: "user" },
+    { id: 3, name: "Charlie", email: "charlie@example.com", file: "https://example.com/files/charlie-presentation.pdf", role: "guest" },
+    { id: 4, name: "Dana", email: "dana@example.com", file: "https://example.com/files/dana-notes.pdf", role: "admin" },
+    { id: 5, name: "Eve", email: "eve@example.com", file: "https://example.com/files/eve-summary.pdf", role: "user" },
+    { id: 6, name: "Frank", email: "frank@example.com", file: "https://example.com/files/frank-report.pdf", role: "guest" },
+    { id: 7, name: "Grace", email: "grace@example.com", file: "https://example.com/files/grace-doc.pdf", role: "admin" },
+    { id: 8, name: "Heidi", email: "heidi@example.com", file: "https://example.com/files/heidi-analysis.pdf", role: "user" },
+    { id: 9, name: "Ivan", email: "ivan@example.com", file: "https://example.com/files/ivan-data.pdf", role: "guest" },
+    { id: 10, name: "Judy", email: "judy@example.com", file: "https://example.com/files/judy-report.pdf", role: "admin" },
 ];
 
 const meta: Meta<typeof ResourceManager> = {
@@ -70,10 +76,6 @@ const meta: Meta<typeof ResourceManager> = {
     parameters: {
         actions: {
             handles: ["create", "update", "delete"],
-        },
-        controls: {
-            // hide defaultValues from both Controls table and Playground
-            exclude: ["defaultValues"],
         },
     },
     argTypes: {
