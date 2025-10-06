@@ -19,6 +19,8 @@
   "license": "ISC",
   "packageManager": "pnpm@10.12.4",
   "dependencies": {
+    "@storybook/react": "^9.1.10",
+    "@storybook/react-vite": "10.0.0-beta.9",
     "react-icons": "^5.5.0",
     "react-resizable-panels": "^3.0.6"
   }
