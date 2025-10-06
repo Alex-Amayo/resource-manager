@@ -16,6 +16,7 @@ export function ResourceManager({
   title,
   handleSelectionChange,
   handleDelete,
+  rowHeight = 40, // Default row height matching the table's default
 }: ResourceManagerProps) {
   return (
     <ResourceManagerProvider
@@ -26,14 +27,30 @@ export function ResourceManager({
       handleSelectionChange={handleSelectionChange}
       handleDelete={handleDelete}
     >
-      <div className="container flex flex-col gap-4">
+      <div className="flex flex-col gap-4">
         {/* Header with title */}
-        <div className="flex justify-between items-center px-10">
+        <div className="flex">
           <h1 className="text-2xl font-bold">{title}</h1>
         </div>
-        <ResourceTable
-          fields={fields}
-        />
+        
+        {/* Scrollable container with uniform border */}
+        <div className="border border-border overflow-hidden">
+          <div className="overflow-auto max-w-full">
+            <ResourceTable
+              fields={fields}
+              rowHeight={rowHeight}
+            />
+            
+            {/* Records summary row - with fixed position styling */}
+            <div 
+              className="sticky left-0 flex items-center px-4 text-xs text-muted-foreground bg-muted/20 min-w-full border-t border-border"
+              style={{ height: `${rowHeight}px` }}
+            >
+              <span>{data?.length || 0} records</span>
+            </div>
+          </div>
+        </div>
+        
         <ActionButtons />
         <ResourceFormModalContainer fields={fields} />
       </div>

@@ -33,4 +33,5 @@ export interface ResourceManagerProps<T extends Record<string, unknown> = Record
   handleDelete: (ids: Array<string | number>) => void;
   initialValues?: Partial<Item<T>>;
   handleSelectionChange?: (selectedIds: Array<string | number>) => void;
+  rowHeight?: number; // Added rowHeight prop to control row heights
 }

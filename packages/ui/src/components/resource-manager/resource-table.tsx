@@ -50,12 +50,12 @@ export function ResourceTable({
 
   return (
     <div className="flex w-full">
-      <div className="rounded-md border border-border flex-1">
+      <div className="flex-1">
         <div className="flex min-w-full">
           {/* Checkbox column as fixed cell */}
           <div className="flex flex-col" style={{ width: 48 }}>
             {/* Header */}
-            <div className="border-b flex items-center justify-center" style={{ height: `${rowHeight}px`, paddingTop: '0.75rem', paddingBottom: '0.75rem' }}>
+            <div className="border-b flex items-center justify-center bg-muted/20" style={{ height: `${rowHeight}px`, paddingTop: '0.75rem', paddingBottom: '0.75rem' }}>
               <Checkbox
                 checked={allSelected}
                 onCheckedChange={handleSelectAll}
@@ -102,7 +102,7 @@ export function ResourceTable({
                   >
                     <div className="h-full flex flex-col">
                       {/* Header */}
-                      <div className="border-b px-4 font-medium text-sm flex items-center" style={{ height: `${rowHeight}px`, paddingTop: '0.75rem', paddingBottom: '0.75rem' }}>
+                      <div className="border-b px-4 font-medium text-sm flex items-center bg-muted/20" style={{ height: `${rowHeight}px`, paddingTop: '0.75rem', paddingBottom: '0.75rem' }}>
                         {field.label}
                       </div>
                       {/* Column cells */}
