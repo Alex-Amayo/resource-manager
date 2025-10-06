@@ -1,38 +1,36 @@
 import type {ReactNode} from 'react';
 import type { ZodType } from 'zod';
 
-export interface Item {
-  id: string | number;
-  [key: string]: unknown;
-}
+export type Item<T extends Record<string, unknown> = Record<string, unknown>> = {
+  id: string;
+} & T;
 
-export type InputType = 'text' | 'number' | 'tags' | 'select' | 'textarea' | 'file';
+export type InputType = 'text' | 'select' | 'textarea' | 'file';
 
 
-export interface fieldConfigs {
+export interface FieldConfig {
   key: string;
   label: string;
   inputType: InputType;
-  fieldType: string;
-  renderCell?: (value: unknown, row?: Item) => ReactNode;
-  options?: { label: string; value: string }[];
+  renderCell?: <T extends Record<string, unknown> = Record<string, unknown>>(value: unknown, row?: Item<T>) => ReactNode;
+  // Optional array of options for select input fields
+  options?: Array<{ label: string; value: string }>;
   // Optional file upload handler for file input fields
-  onFileUpload?: (file: File) => Promise<string>;
+  onFileUpload?: (file: File) => Promise<string | null>; 
   // Optional Zod schema for field validation
   zodSchema?: ZodType<unknown>;
-  // Optional required property for validation
 }
 
 export type ModalMode = "add" | "edit";
 
-export interface ResourceManagerProps {
+export interface ResourceManagerProps<T extends Record<string, unknown> = Record<string, unknown>> {
   title: string;
   resourceName: string;
-  data: Item[];
-  fields: fieldConfigs[];
-  handleCreate: (values: Partial<Item>) => void;
-  handleUpdate: (id: string , values: Partial<Item>) => void;
+  data: Array<Item<T>>;
+  fields: Array<FieldConfig>;
+  handleCreate: (values: Partial<Item<T>>) => void;
+  handleUpdate: (id: string, values: Partial<Item<T>>) => void;
   handleDelete: (ids: Array<string | number>) => void;
-  initialValues?: Partial<Item>;
+  initialValues?: Partial<Item<T>>;
   handleSelectionChange?: (selectedIds: Array<string | number>) => void;
 }

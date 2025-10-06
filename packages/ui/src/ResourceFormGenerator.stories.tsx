@@ -1,14 +1,14 @@
 // ResourceFormGenerator.stories.tsx
 import type {Meta, StoryObj} from '@storybook/react-vite';
 import {ResourceFormGenerator} from './components/resource-manager/resource-form-generator/resource-form-generator.tsx';
-import type {fieldConfigs} from '@/components/resource-manager';
+import type {FieldConfig} from '@/components/resource-manager';
 import {z} from 'zod';
 
 // Zod schema for the 'name' field
 const nameFieldSchema = z.string().min(3, 'Name must be at least 3 characters');
 
 // Sample fields configuration
-const sampleFields: fieldConfigs[] = [
+const sampleFields: FieldConfig[] = [
     {
         key: 'name',
         label: 'Name',

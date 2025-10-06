@@ -1,10 +1,10 @@
-import type { fieldConfigs } from "../resource-manager-types.ts";
+import type { FieldConfig } from "../resource-manager-types.ts";
 import type { Item } from "../resource-manager-types.ts";
 
 export type ModalMode = "add" | "edit";
 
 export interface ResourceFormGeneratorProps {
-  fields: fieldConfigs[];
+  fields: FieldConfig[];
   initialValues: Partial<Item>;
   onSubmit: (values: Partial<Item>) => void;
   onCancel: () => void;
@@ -19,5 +19,5 @@ export interface ResourceFormModalProps {
   onCancel: () => void;
   mode: ModalMode;
   resourceName: string;
-  fields: fieldConfigs[];
+  fields: FieldConfig[];
 }

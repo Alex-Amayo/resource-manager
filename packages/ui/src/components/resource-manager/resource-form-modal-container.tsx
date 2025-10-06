@@ -1,10 +1,10 @@
 import React from 'react';
 import { ResourceFormModal } from "./resource-form-generator/resource-form-modal";
 import { useResourceManager } from './resource-manager-context';
-import type { fieldConfigs } from './resource-manager-types.ts';
+import type { FieldConfig } from './resource-manager-types.ts';
 
 interface ResourceFormModalContainerProps {
-  fields: fieldConfigs[];
+  fields: FieldConfig[];
 }
 
 export function ResourceFormModalContainer({ fields }: ResourceFormModalContainerProps) {
