@@ -1,43 +1,37 @@
 import type {ReactNode} from 'react';
+import type { ZodType } from 'zod';
 
-// General resource manager types
-export interface ResourceData {
-  id: string | number;
-  [key: string]: any;
-}
+export type Item<T extends Record<string, unknown> = Record<string, unknown>> = {
+  id: string;
+} & T;
 
-export type InputType = 'text' | 'number' | 'tags' | 'select' | 'textarea' | 'file';
+export type InputType = 'text' | 'select' | 'textarea' | 'file';
 
-// Only the minimal types for resource manager and table
-export interface FieldDef {
+
+export interface FieldConfig {
   key: string;
   label: string;
   inputType: InputType;
-  fieldType: string;
-  renderCell: (value: any, row?: any) => ReactNode;
-  options?: { label: string; value: string }[];
-  required?: boolean;
+  renderCell?: <T extends Record<string, unknown> = Record<string, unknown>>(value: unknown, row?: Item<T>) => ReactNode;
+  // Optional array of options for select input fields
+  options?: Array<{ label: string; value: string }>;
+  // Optional file upload handler for file input fields
+  onFileUpload?: (file: File) => Promise<string | null>; 
+  // Optional Zod schema for field validation
+  zodSchema?: ZodType<unknown>;
 }
 
 export type ModalMode = "add" | "edit";
 
-export interface ResourceManagerProps {
+export interface ResourceManagerProps<T extends Record<string, unknown> = Record<string, unknown>> {
   title: string;
   resourceName: string;
-  data: ResourceData[];
-  fields: FieldDef[];
-  onCreate: (values: Partial<ResourceData>) => void;
-  onUpdate: (id: string , values: Partial<ResourceData>) => void;
-  onDelete?: (ids: Array<string | number>) => void;
-  defaultValues?: Partial<ResourceData>;
-  onSelectionChange?: (selectedIds: Array<string | number>) => void;
-}
-
-export interface ResourceTableProps {
-  data: ResourceData[];
-  fields: FieldDef[];
-  onEdit: (index: number) => void;
-  onDelete: (index: number) => void;
-  renderActionsMenu: (rowIdx: number, onEdit: () => void, onDelete: () => void) => ReactNode;
-  resourceName: string;
+  data: Array<Item<T>>;
+  fields: Array<FieldConfig>;
+  handleCreate: (values: Partial<Item<T>>) => void;
+  handleUpdate: (id: string, values: Partial<Item<T>>) => void;
+  handleDelete: (ids: Array<string | number>) => void;
+  initialValues?: Partial<Item<T>>;
+  handleSelectionChange?: (selectedIds: Array<string | number>) => void;
+  rowHeight?: number; // Added rowHeight prop to control row heights
 }

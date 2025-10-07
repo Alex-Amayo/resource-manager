@@ -31,7 +31,6 @@
         { "name": "delete-confirmation-dialog", "path": "src/components/resource-manager/delete-confirmation-dialog.tsx", "type": "registry:component" },
         { "name": "resource-manager-context", "path": "src/components/resource-manager/resource-manager-context.tsx", "type": "registry:component" },
         { "name": "resource-form-modal-container", "path": "src/components/resource-manager/resource-form-modal-container.tsx", "type": "registry:component" },
-        { "name": "create-resource-button", "path": "src/components/resource-manager/create-resource-button.tsx", "type": "registry:component" },
         { "name": "resource-form-modal", "path": "src/components/resource-manager/resource-form-generator/resource-form-modal.tsx", "type": "registry:component" },
         { "name": "resource-form-generator", "path": "src/components/resource-manager/resource-form-generator/resource-form-generator.tsx", "type": "registry:component" },
         { "name": "input-text", "path": "src/components/resource-manager/resource-form-generator/inputs/input-text.tsx", "type": "registry:component" },

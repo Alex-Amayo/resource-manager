@@ -1,19 +1,18 @@
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectItem, SelectLabel } from '@/components/ui/select';
-import type { ControllerRenderProps } from 'react-hook-form';
+import type { FieldValues, FieldPath, ControllerRenderProps } from 'react-hook-form';
 
 interface Option {
   label: string;
   value: string;
 }
 
-interface InputSelectProps {
-  id: string;
+interface InputSelectProps<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>> {
   label: string;
-  field: ControllerRenderProps<any, string>;
+  field: ControllerRenderProps<TFieldValues, TName>;
   options?: Option[];
 }
 
-export function InputSelect({ id, label, field, options }: InputSelectProps) {
+export function InputSelect<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>({ label, field, options }: InputSelectProps<TFieldValues, TName>) {
   const value = field.value ?? '';
   return (
     <Select value={value} onValueChange={field.onChange}>

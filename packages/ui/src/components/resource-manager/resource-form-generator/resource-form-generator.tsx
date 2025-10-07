@@ -8,7 +8,7 @@ import { InputTextarea } from './inputs/input-textarea.tsx';
 import { InputSelect } from './inputs/input-select.tsx';
 import { InputFile } from './inputs/input-file.tsx';
 import type { ResourceFormGeneratorProps } from './form-types.ts';
-import type { Item } from '../resource-manager-types.ts';
+import type { Item } from '../types.ts';
 
 
 /**

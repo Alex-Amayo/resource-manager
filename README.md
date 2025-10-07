@@ -1,58 +1,59 @@
+
 # Resource Manager
 
-A modern, flexible resource management system built with React and Next.js.
+An add-on for Shadcn/UI offering a highly extensible table and form generator. <br />
+Streamline frontend-to-database management with minimal setup and maximum customizability.
+
+---
 
 ## Project Structure
 
-This is a monorepo containing multiple packages:
+This is a monorepo that contains:
 
-### `/packages/demo`
-A Next.js application showcasing the Resource Manager component in action. It includes:
-- Full implementation examples
-- Various use cases and configurations
-- UI components and styling
+Includes:
 
-### `/packages/ui`
-The core UI library containing:
-- Resource Manager component
-- Reusable UI components
-- Form generators
-- Utility functions
+- `/demo` — Example  Next.j page demonstrating integration with Shadcn UI.
+- `/ui` — Storybook environment for component development
+
+---
 
 ## Getting Started
 
-1. Install dependencies:
-```bash
-pnpm install
-```
+### Resource Manager UI Development
 
-2. Run the demo application:
-```bash
-pnpm --filter demo dev
-```
+#### Development Workflow
 
-3. Run the UI development environment:
-```bash
-pnpm --filter ui dev
-```
+---
 
-## Features
+Follow this workflow to streamline **UI component development** and **registry management**.
 
-- Modern UI components built with React
-- Flexible resource management interface
-- Form generation capabilities
-- Responsive design
-- TypeScript support
-- Storybook documentation for UI components
+---
 
-## Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
-## License
+1. **Install dependencies**
+   ```bash
+   pnpm i
+   ```
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+2. **Start the main development environment**
+   ```bash
+   pnpm dev
+   ```
+
+3. **Run Storybook for UI component development**
+   ```bash
+   pnpm storybook
+   ```
+
+4. **Build the registry**
+   ```bash
+   pnpm registry:build
+   ```
+
+4. **Update the component in the demo page**
+   ```bash
+   pnpm registry:add
+   ```
+
+

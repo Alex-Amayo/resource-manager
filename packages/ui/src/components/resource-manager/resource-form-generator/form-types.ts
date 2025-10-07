@@ -1,5 +1,5 @@
-import type { FieldConfig } from "../resource-manager-types.ts";
-import type { Item } from "../resource-manager-types.ts";
+import type { FieldConfig } from "../types.ts";
+import type { Item } from "../types.ts";
 
 export type ModalMode = "add" | "edit";
 

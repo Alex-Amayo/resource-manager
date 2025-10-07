@@ -1,6 +1,6 @@
 import { Dialog, DialogTitle } from "@radix-ui/react-dialog";
 import { DialogContent, DialogHeader } from "@/components/ui/dialog";
-import type { ResourceFormModalProps } from "./form-resource-manager-types.ts";
+import type { ResourceFormModalProps } from "./form-types.ts";
 import { ResourceFormGenerator } from "./resource-form-generator.tsx";
 
 

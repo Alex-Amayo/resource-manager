@@ -1,6 +1,6 @@
 'use client';
 
-import type { ResourceManagerProps } from "./resource-manager-types.ts";
+import type { ResourceManagerProps } from "./types.ts";
 import { ResourceTable } from "./resource-table";
 import { ResourceManagerProvider } from "./resource-manager-context";
 import { ResourceFormModalContainer } from "./resource-form-modal-container";

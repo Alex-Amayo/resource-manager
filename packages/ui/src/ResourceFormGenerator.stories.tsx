@@ -12,37 +12,25 @@ const sampleFields: FieldConfig[] = [
     {
         key: 'name',
         label: 'Name',
-        fieldType: 'string',
         inputType: 'text',
         zodSchema: nameFieldSchema,
     },
     {
-        key: 'description',
-        label: 'Description',
-        fieldType: 'string',
-        inputType: 'textarea',
-    },
-    {
         key: 'category',
         label: 'Category',
-        fieldType: 'string',
         inputType: 'select',
         options: [
-            {value: 'technology', label: 'Technology'},
             {value: 'business', label: 'Business'},
-            {value: 'education', label: 'Education'},
         ],
     },
     {
         key: 'notes',
         label: 'Additional Notes',
-        fieldType: 'string',
         inputType: 'textarea',
     },
     {
         key: 'attachment',
         label: 'Attachment',
-        fieldType: 'file',
         inputType: 'file',
         renderCell: (value) => value instanceof File ? value.name : (value ? String(value) : ''),
     },

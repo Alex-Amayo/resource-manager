@@ -6,11 +6,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "pnpm --parallel --filter \"./packages/*\" dev",
+    "demo": "pnpm --filter demo dev",
     "build": "pnpm --filter ui build",
     "storybook": "pnpm --filter ui storybook",
     "storybook:build": "pnpm --filter ui build-storybook",
     "registry:build": "pnpm --filter ui registry:build",
-    "registry:demo": "pnpm --filter demo dev",
     "registry:add": "cd packages/demo && pnpm dlx shadcn@latest add http://localhost:5173/r/resource-manager.json --overwrite",
     "storybook:serve": "pnpm dlx serve packages/ui/storybook-static -p 6006"
   },

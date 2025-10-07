@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { FileUp } from 'lucide-react';
 import type { ControllerRenderProps } from 'react-hook-form';
-import type { Item } from '../../resource-manager-types.ts';
+import type { Item } from '../../types.ts';
 
 interface InputFileProps {
   id: string;

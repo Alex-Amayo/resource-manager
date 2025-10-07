@@ -33,6 +33,7 @@ export function ActionButtons() {
       
       <div className="flex gap-2 justify-end">
         <Button
+          className="cursor-pointer"
           variant="destructive"
           onClick={() => setIsDeleteDialogOpen(true)}
           disabled={selectedIds.length === 0}
@@ -40,7 +41,7 @@ export function ActionButtons() {
           <Trash2 className="w-4 h-4" />
           Delete Selected ({selectedIds.length})
         </Button>
-        <Button onClick={handleOpenCreate}>
+        <Button className="cursor-pointer" onClick={handleOpenCreate}>
           <PlusCircle className="w-4 h-4" />
           Add {resourceName}
         </Button>

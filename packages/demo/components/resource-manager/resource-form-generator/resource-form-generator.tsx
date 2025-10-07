@@ -7,8 +7,8 @@ import { InputText } from './inputs/input-text.tsx';
 import { InputTextarea } from './inputs/input-textarea.tsx';
 import { InputSelect } from './inputs/input-select.tsx';
 import { InputFile } from './inputs/input-file.tsx';
-import type { ResourceFormGeneratorProps } from './form-resource-manager-types.ts';
-import type { ResourceData } from '../resource-manager-types.ts';
+import type { ResourceFormGeneratorProps } from './form-types.ts';
+import type { Item } from '../types.ts';
 
 
 /**
@@ -27,27 +27,9 @@ export function ResourceFormGenerator({
     
     fields.forEach((field) => {
       const fieldKey = String(field.key);
-      // Handle different field types based on fieldType
-      switch(field.fieldType) {
-        case 'string':
-          schemaMap[fieldKey] = field.required 
-            ? z.string().min(1, { message: `${field.label} is required` })
-            : z.string().optional();
-          break;
-        case 'file':
-          schemaMap[fieldKey] = field.required
-            ? z.any().refine(val => val instanceof File, { message: `${field.label} is required` })
-            : z.any().optional();
-          break;
-        // Ready for future expansion with other field types
-        default:
-          // Default to string for now
-          schemaMap[fieldKey] = field.required 
-            ? z.string().min(1, { message: `${field.label} is required` })
-            : z.string().optional();
-      }
+      // If zodSchema is provided, use it. Otherwise, make the field optional.
+      schemaMap[fieldKey] = field.zodSchema ? field.zodSchema : z.any().optional();
     });
-    
     return z.object(schemaMap);
   };
   
@@ -65,50 +47,42 @@ export function ResourceFormGenerator({
 
   // Form submission handler
   const onFormSubmit = (data: FieldValues) => {
-    onSubmit(data as Partial<ResourceData>);
+    onSubmit(data as Partial<Item>);
+  };
+
+  // Input component mapping
+  const inputComponents: Record<string, any> = {
+    text: InputText,
+    textarea: InputTextarea,
+    select: InputSelect,
+    file: InputFile,
   };
 
   return (
     <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-4">
       {fields.map((field) => {
         const fieldKey = String(field.key);
+        const InputComponent = inputComponents[field.inputType] || InputText;
         return (
           <div key={fieldKey} className="space-y-2">
             <label 
               htmlFor={fieldKey} 
               className="block text-sm font-medium text-gray-700"
             >
-              {field.label} {field.required && <span className="text-red-500">*</span>}
+              {field.label} {(field.zodSchema) && <span className="text-red-500">*</span>}
             </label>
-            
             <Controller
               name={fieldKey}
               control={control}
-              render={({ field: formField }) => {
-                // Render different input types
-                switch (field.inputType) {
-                  case 'text':
-                    return (
-                      <InputText id={fieldKey} field={formField} />
-                    );
-                  case 'textarea':
-                    return (
-                      <InputTextarea id={fieldKey} field={formField} />
-                    );
-                  case 'select':
-                    return (
-                      <InputSelect id={fieldKey} label={field.label} field={formField} options={field.options} />
-                    );
-                  case 'file':
-                    return (
-                      <InputFile id={fieldKey} field={formField} />
-                    );
-                  default:
-                    return <InputText id={fieldKey} field={formField} />;
-                }
-              }}
+              render={({ field: formField }) => (
+                <InputComponent
+                  id={fieldKey}
+                  field={formField}
+                  {...(field.inputType === 'select' ? { label: field.label, options: field.options } : {})}
+                  {...(field.inputType === 'file' ? { onFileUpload: field.onFileUpload } : {})}
+                />
+              )}
             />
-            
             {errors[fieldKey] && (
               <p className="text-red-500 text-sm">
                 {errors[fieldKey]?.message?.toString()}
