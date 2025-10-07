@@ -4,8 +4,6 @@
 An add-on for Shadcn/UI offering a highly extensible table and form generator. <br />
 Streamline frontend-to-database management with minimal setup and maximum customizability.
 
----
-
 ## Project Structure
 
 This is a monorepo that contains:
@@ -15,20 +13,14 @@ Includes:
 - `/demo` — Example  Next.j page demonstrating integration with Shadcn UI.
 - `/ui` — Storybook environment for component development
 
----
-
 ## Getting Started
 
 ### Resource Manager UI Development
 
 #### Development Workflow
 
----
 
 Follow this workflow to streamline **UI component development** and **registry management**.
-
----
-
 
 
 1. **Install dependencies**
