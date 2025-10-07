@@ -48,4 +48,11 @@ Follow this workflow to streamline **UI component development** and **registry m
    pnpm registry:add
    ```
 
+## Coming Soon
+- [ ] Sorting options  
+- [ ] Grouping options  
+- [ ] Filtering options
+
+
+
 
