@@ -8,6 +8,8 @@
     "dev": "pnpm --parallel --filter \"./packages/*\" dev",
     "demo": "pnpm --filter demo dev",
     "build": "pnpm --filter ui build",
+    "build:demo": "pnpm --filter demo build",
+    "build:gh-pages": "pnpm --filter demo build:gh-pages",
     "storybook": "pnpm --filter ui storybook",
     "storybook:build": "pnpm --filter ui build-storybook",
     "registry:build": "pnpm --filter ui registry:build",
