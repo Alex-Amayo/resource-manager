@@ -49,9 +49,10 @@ Follow this workflow to streamline **UI component development** and **registry m
    ```
 
 ## Coming Soon
-- [ ] Sorting options  
-- [ ] Grouping options  
-- [ ] Filtering options
+- Sorting options  
+- Grouping options  
+- Filtering options
+- Improved loading UI
 
 
 
