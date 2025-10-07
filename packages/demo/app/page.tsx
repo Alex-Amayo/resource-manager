@@ -1,5 +1,6 @@
 import { BooksDemo } from '@/components/demo/books-demo';
 import { FaGithub } from "react-icons/fa";
+import Image from "next/image";
 
 export default function Home() {
     // Page content variables
@@ -35,7 +36,13 @@ export default function Home() {
                 <div className="container mx-auto h-full">
                     <div className="flex justify-between items-center px-4 h-full">
                         <a href={process.env.NEXT_PUBLIC_BASE_PATH || "/"} className="flex items-center gap-2 text-2xl font-bold text-black hover:text-gray-700 transition-colors">
-                            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/table.png`} alt={pageContent.header.logoAlt} className="w-10 h-10" />
+                            <Image 
+                                src={`/table.png?v=${new Date().getTime()}`}
+                                alt={pageContent.header.logoAlt} 
+                                width={40} 
+                                height={40} 
+                                priority
+                            />
                             {pageContent.header.title}
                         </a>
                         <a href={pageContent.links.github} target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-gray-600 transition-colors">
