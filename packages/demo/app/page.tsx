@@ -12,7 +12,7 @@ export default function Home() {
         hero: {
             title: "Resource Manager",
             subtitle: "A customizable frontend for any data source",
-            description: "An add-on for Shadcn/UI offering a highly extensible table and form generator with built-in Zod validation.",
+            description: "An enhanced Shadcn/UI data table with TypeScript support, resizable columns, and a dynamic form generator powered by Zod validation and integrated file uploads.",
         },
         installation: {
             title: "Installation",
