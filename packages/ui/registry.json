@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "ui",
-  "homepage": "https://ui.resource-manager.com",
+  "homepage": "https://alex-amayo.github.io/resource-manager/ui",
   "items": [
     {
       "name": "resource-manager",

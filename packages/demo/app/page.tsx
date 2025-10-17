@@ -16,7 +16,7 @@ export default function Home() {
         },
         installation: {
             title: "Installation",
-            command: "pnpm shadcn add resource-manager && pnpm dlx shadcn@latest add http://localhost:5173/r/resource-manager.json --overwrite",
+            command: "npx shadcn@latest add https://alex-amayo.github.io/resource-manager/ui/r/resource-manager.json",
         },
         demo: {
             title: "Demo",
