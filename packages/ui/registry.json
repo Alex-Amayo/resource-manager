@@ -23,7 +23,8 @@
         "lucide-react",
         "react-hook-form",
         "zod",
-        "react-resizable-panels"
+        "react-resizable-panels",
+        "react"
       ],
       "files": [
         { "name": "resource-manager", "path": "src/components/resource-manager/resource-manager.tsx", "type": "registry:component" },
